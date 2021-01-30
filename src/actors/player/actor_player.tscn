@@ -1,19 +1,21 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/actors/player/actor_player_script.gd" type="Script" id=1]
 [ext_resource path="res://src/lights/effects_item_camera/light_shadow_light.png" type="Texture" id=2]
 [ext_resource path="res://src/lights/effects_item_camera/luz.png" type="Texture" id=3]
+[ext_resource path="res://src/objects/player_camera/object_player_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/player/asset_player_spritesheet.png" type="Texture" id=5]
+[ext_resource path="res://src/actors/player/actor_player_inventory_script.gd" type="Script" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 5 )
-region = Rect2( 160, 0, 160, 320 )
+region = Rect2( 0, 0, 160, 320 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 160, 320 )
+region = Rect2( 160, 0, 160, 320 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -29,12 +31,12 @@ region = Rect2( 480, 0, 160, 320 )
 animations = [ {
 "frames": [ SubResource( 1 ) ],
 "loop": true,
-"name": "walk_N",
+"name": "walk_S",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
-"name": "walk_S",
+"name": "walk_N",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 3 ) ],
@@ -68,11 +70,11 @@ animation = "walk_S"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 6 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 2048
 collision_mask = 2048
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource( 7 )
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -96,16 +98,23 @@ shadow_enabled = true
 wait_time = 0.08
 one_shot = true
 
-[node name="Area2D" type="Area2D" parent="Flash"]
-collision_layer = 64
-collision_mask = 64
+[node name="FlashArea" type="Area2D" parent="Flash"]
+collision_layer = 2112
+collision_mask = 2112
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flash/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flash/FlashArea"]
 polygon = PoolVector2Array( 58.8665, 1.66443, 324.59, -141.288, 318.704, 132.844 )
 
 [node name="ViewDirection" type="Position2D" parent="."]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+
+[node name="Camera2D" parent="." instance=ExtResource( 4 )]
+
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource( 6 )
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_InteractionArea_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_InteractionArea_area_exited"]
 [connection signal="timeout" from="Flash/Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="Flash/Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Flash/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="area_entered" from="Flash/FlashArea" to="." method="_on_FlashArea_area_entered"]
+[connection signal="area_exited" from="Flash/FlashArea" to="." method="_on_FlashArea_area_exited"]
+[connection signal="body_entered" from="Flash/FlashArea" to="." method="_on_FlashArea_body_entered"]
+[connection signal="body_exited" from="Flash/FlashArea" to="." method="_on_FlashArea_body_exited"]

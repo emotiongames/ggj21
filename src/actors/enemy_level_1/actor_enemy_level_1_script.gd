@@ -47,12 +47,12 @@ func detect_raycast_collision():
 		if $RayCast2D.is_colliding() and $RayCast2D.get_collider().is_in_group("player") and enemy_state != EnemyState.PARALYZED:
 			is_player_on_field_view = true
 			enemy_state = EnemyState.SEEKING
-			print("enemy sees player")
+			#print("enemy sees player")
 		else:
-			print("enemy sees obstacle")
+			#print("enemy sees obstacle")
 			is_player_on_field_view = false
-	else:
-		print("no seeing player")
+	#else:
+		#print("no seeing player")
 
 
 func execute_idle_state():

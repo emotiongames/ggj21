@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GGJ21"
-run/main_scene="res://src/levels/test_level/level_test.tscn"
+run/main_scene="res://src/levels/test_mechanics_2/level_test_mechanics_2.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -60,6 +60,7 @@ player_skill_use={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="player_action_area"
+2d_physics/layer_3="player_skill_area"
 2d_physics/layer_7="enemy"
 2d_physics/layer_12="item"
 2d_physics/layer_13="obstacle"

@@ -10,27 +10,34 @@ enum FlashState {STATE_0, STATE_1, STATE_2, STATE_3}
 
 
 export (int) var speed = 200
+export (int) var set_skill_state = 0
 
 var velocity = Vector2()
 var view_direction = Vector2() #looking to down
 var on_skill_area = false
+var on_puzzle_item_area = false
 var is_enemy_on_flash_area = false
+var is_puzzle_item_on_flash_area = false
 var available_skill = SkillState.NO_SKILL
 var flash_state = FlashState.STATE_0
+var last_flash_state = FlashState.STATE_0
 var is_flash_first_use = true
 var is_showing_skill_hint = false
 var flash_gauge_value = 100
+var puzzle_item
 
 
 func _ready():
 	var _ui_flash_gauge_updated_signal = Events.connect("ui_flash_gauge_updated", self, "_on_Ui_flash_gauge_updated")
 	add_to_group("player")
+	
+	available_skill = set_skill_state
 
 
 func _process(_delta):
 	if not is_showing_skill_hint:
 		view_movement()
-	if on_skill_area:
+	if on_skill_area or on_puzzle_item_area:
 		get_interaction_input()
 	if available_skill != SkillState.NO_SKILL:
 		get_skill_input()
@@ -99,6 +106,14 @@ func get_interaction_input():
 				available_skill = SkillState.COMPLETE_SKILL
 				Events.emit_signal("ui_complete_skill_hint")
 			on_skill_area = false
+		if on_puzzle_item_area:
+			if puzzle_item.is_flash_light_required():
+				if puzzle_item.was_item_photographed():
+					Events.emit_signal("get_puzzle_item", puzzle_item.get_item_name())
+					$Inventory.set_actual_item(puzzle_item.get_item_name())
+			else:
+				Events.emit_signal("get_puzzle_item", puzzle_item.get_item_name())
+				$Inventory.set_actual_item(puzzle_item.get_item_name())
 
 
 func get_skill_input():
@@ -127,14 +142,23 @@ func do_skill_simple_action():
 		Events.emit_signal("is_enemy_paralyzed")
 
 
-func _on_Area2D_area_entered(area):
+func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("skill") and not on_skill_area:
 		on_skill_area = true
+	
+	if area.is_in_group("puzzle_item") and not on_puzzle_item_area:
+		on_puzzle_item_area = true
+		puzzle_item = area
 
 
-func _on_Area2D_area_exited(area):
+func _on_InteractionArea_area_exited(area):
 	if area.is_in_group("skill") and on_skill_area:
 		on_skill_area = false
+		
+	if area.is_in_group("puzzle_item") and on_puzzle_item_area:
+		if area.is_flash_light_required():
+			on_puzzle_item_area = false
+			puzzle_item = null
 
 
 func _on_Timer_timeout():
@@ -150,22 +174,34 @@ func _on_Timer_timeout():
 			$Flash/Timer.wait_time = 0.27
 			$Flash/Timer.start()
 		FlashState.STATE_3:
+			if puzzle_item:
+				if puzzle_item.is_flash_light_required() and is_puzzle_item_on_flash_area:
+					Events.emit_signal("puzzle_item_photographed", puzzle_item.get_item_name())
 			flash_state = FlashState.STATE_0
 			$Flash/Timer.wait_time = TIMER_DEFAULT
 			$Light2D.enabled = true
 			$Flash/Light2D.enabled = false
-	pass # Replace with function body.
 
 
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("enemy"):
-		is_enemy_on_flash_area = true
-
-
-func _on_Area2D_body_exited(body):
+func _on_FlashArea_body_exited(body):
 	if body.is_in_group("enemy"):
 		is_enemy_on_flash_area = false
 
 
+func _on_FlashArea_body_entered(body):
+	if body.is_in_group("enemy"):
+		is_enemy_on_flash_area = true
+
+
 func _on_Ui_flash_gauge_updated(value):
 	flash_gauge_value = value
+
+
+func _on_FlashArea_area_entered(area):
+	if area.is_in_group("puzzle_item"):
+		is_puzzle_item_on_flash_area = true
+
+
+func _on_FlashArea_area_exited(area):
+	if area.is_in_group("puzzle_item"):
+		is_puzzle_item_on_flash_area = false
