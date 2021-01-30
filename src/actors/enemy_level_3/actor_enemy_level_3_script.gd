@@ -23,7 +23,8 @@ func _ready():
 	var _do_paralyze_enemy_signal = Events.connect("do_paralyze_enemy", self, "_on_Do_paralyze_enemy")
 	var _do_damage_on_enemy_signal = Events.connect("do_damage_on_enemy", self, "_on_Do_damage_on_enemy")
 	$RayCast2D.set_cast_to(raycast_direction)
-	instanced_navigation_area = get_node(navigation_area)
+	if instanced_navigation_area == null:
+		instanced_navigation_area = get_node(navigation_area)
 	add_to_group("enemy")
 
 
@@ -88,3 +89,7 @@ func _on_StandstillTimer_timeout():
 func _on_Do_damage_on_enemy(enemy):
 	if self == enemy:
 		queue_free()
+
+
+func set_navigation_area(node):
+	instanced_navigation_area = node

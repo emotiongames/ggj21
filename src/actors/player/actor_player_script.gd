@@ -130,12 +130,9 @@ func get_interaction_input():
 			on_recharge_item_area = false
 
 func get_skill_input(delta):
-	#print(available_skill)
 	if Input.is_action_pressed("player_skill_use"):
-		print("trying to use skill")
 		pressed_time += delta
 	if Input.is_action_just_released("player_skill_use") and pressed_time < 0.3:
-		print("trying to use skill simple")
 		if not is_complete_flash_first_use:
 			if flash_gauge_value >= 25:
 				do_skill_simple_action()
@@ -148,9 +145,7 @@ func get_skill_input(delta):
 				is_showing_skill_hint = false
 		pressed_time = 0
 	elif Input.is_action_just_released("player_skill_use"):
-		print("trying to use skill complete")
 		if available_skill == SkillState.COMPLETE_SKILL:
-			print(flash_gauge_value)
 			if flash_gauge_value >= 100:
 				do_skill_complete_action()
 			if is_complete_flash_first_use:

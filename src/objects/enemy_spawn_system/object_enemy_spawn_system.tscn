@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/objects/enemy_spawn_system/object_enemy_spawn_system_script.gd" type="Script" id=1]
+
+[node name="EnemySpawnSystem" type="Node2D"]
+script = ExtResource( 1 )
+waves = [ {
+"enemies_on_screen": 1,
+"total_enemies": 2,
+"wave": 0
+} ]

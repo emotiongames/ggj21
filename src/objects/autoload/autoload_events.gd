@@ -23,3 +23,5 @@ signal ui_add_flash_gauge_value(value)
 
 signal puzzle_item_photographed(item_name)
 signal puzzle_unlock_item(item)
+
+signal start_spawn_enemies
