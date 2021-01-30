@@ -3,6 +3,8 @@ extends KinematicBody2D
 
 const TIMER_DEFAULT = 0.08
 const FLASH_SIMPLE_VALUE = 25
+const FLASH_COMPLETE_VALUE = 100
+const FLASH_ENERGY_DEFAULT = 0.8
 
 
 enum SkillState {NO_SKILL, SIMPLE_SKILL, COMPLETE_SKILL}
@@ -16,15 +18,18 @@ var velocity = Vector2()
 var view_direction = Vector2() #looking to down
 var on_skill_area = false
 var on_puzzle_item_area = false
-var is_enemy_on_flash_area = false
 var is_puzzle_item_on_flash_area = false
 var available_skill = SkillState.NO_SKILL
 var flash_state = FlashState.STATE_0
 var last_flash_state = FlashState.STATE_0
-var is_flash_first_use = true
+var is_simple_flash_first_use = true
+var is_complete_flash_first_use = true
 var is_showing_skill_hint = false
 var flash_gauge_value = 100
+var pressed_time = 0
 var puzzle_item
+var enemies_on_flash_area = []
+var flash_light_energy = FLASH_ENERGY_DEFAULT
 
 
 func _ready():
@@ -34,13 +39,13 @@ func _ready():
 	available_skill = set_skill_state
 
 
-func _process(_delta):
+func _process(delta):
 	if not is_showing_skill_hint:
 		view_movement()
 	if on_skill_area or on_puzzle_item_area:
 		get_interaction_input()
 	if available_skill != SkillState.NO_SKILL:
-		get_skill_input()
+		get_skill_input(delta)
 
 func _physics_process(delta):
 	if flash_state == FlashState.STATE_0 and not is_showing_skill_hint:
@@ -105,6 +110,7 @@ func get_interaction_input():
 			elif available_skill == SkillState.SIMPLE_SKILL:
 				available_skill = SkillState.COMPLETE_SKILL
 				Events.emit_signal("ui_complete_skill_hint")
+				Events.emit_signal("ui_set_flash_gauge_value", 100)
 			on_skill_area = false
 		if on_puzzle_item_area:
 			if puzzle_item.is_flash_light_required():
@@ -116,20 +122,32 @@ func get_interaction_input():
 				$Inventory.set_actual_item(puzzle_item.get_item_name())
 
 
-func get_skill_input():
+func get_skill_input(delta):
 	# mouse click
-	if Input.is_action_just_released("player_skill_use"):
+	if Input.is_action_pressed("player_skill_use"):
+		pressed_time += delta
+	if Input.is_action_just_released("player_skill_use") and pressed_time < 0.3:
 		if available_skill == SkillState.SIMPLE_SKILL:
 			if flash_gauge_value >= 25:
 				do_skill_simple_action()
-			if is_flash_first_use:
+			if is_simple_flash_first_use:
 				# Luzes se apagam
 				# Som fica mais sombrio
 				# Skill hint é oculta
 				Events.emit_signal("ui_hide_skill_hint")
-				is_flash_first_use = false
+				is_simple_flash_first_use = false
 				is_showing_skill_hint = false
-			
+		pressed_time = 0
+	elif Input.is_action_just_released("player_skill_use"):
+		if available_skill == SkillState.COMPLETE_SKILL:
+			if flash_gauge_value >= 100:
+				do_skill_complete_action()
+			if is_complete_flash_first_use:
+				# Inimigos começam a spawnar na arena
+				Events.emit_signal("ui_hide_skill_hint")
+				is_complete_flash_first_use = false
+				is_showing_skill_hint = false
+		pressed_time = 0
 
 
 func do_skill_simple_action():
@@ -138,8 +156,22 @@ func do_skill_simple_action():
 	$Light2D.enabled = false
 	$Flash/Light2D.enabled = true
 	$Flash/Timer.start()
-	if is_enemy_on_flash_area:
-		Events.emit_signal("is_enemy_paralyzed")
+	if len(enemies_on_flash_area) > 0:
+		for enemy in enemies_on_flash_area:
+			Events.emit_signal("do_paralyze_enemy", enemy)
+
+
+func do_skill_complete_action():
+	Events.emit_signal("ui_update_flash_gauge", FLASH_COMPLETE_VALUE)
+	flash_state = FlashState.STATE_1
+	$Light2D.enabled = false
+	$Flash/Light2D.enabled = true
+	flash_light_energy = $Flash/Light2D.energy
+	$Flash/Light2D.energy = flash_light_energy * 3
+	$Flash/Timer.start()
+	if len(enemies_on_flash_area) > 0:
+		for enemy in enemies_on_flash_area:
+			Events.emit_signal("do_damage_on_enemy", enemy)
 
 
 func _on_InteractionArea_area_entered(area):
@@ -181,16 +213,19 @@ func _on_Timer_timeout():
 			$Flash/Timer.wait_time = TIMER_DEFAULT
 			$Light2D.enabled = true
 			$Flash/Light2D.enabled = false
+			if available_skill == SkillState.COMPLETE_SKILL:
+				$Flash/Light2D.energy = flash_light_energy
 
 
 func _on_FlashArea_body_exited(body):
 	if body.is_in_group("enemy"):
-		is_enemy_on_flash_area = false
+		var index = enemies_on_flash_area.find(body)
+		enemies_on_flash_area.remove(index)
 
 
 func _on_FlashArea_body_entered(body):
 	if body.is_in_group("enemy"):
-		is_enemy_on_flash_area = true
+		enemies_on_flash_area.append(body)
 
 
 func _on_Ui_flash_gauge_updated(value):
