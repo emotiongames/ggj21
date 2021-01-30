@@ -23,11 +23,13 @@ var available_skill = SkillState.NO_SKILL
 var flash_state = FlashState.STATE_0
 var last_flash_state = FlashState.STATE_0
 var is_simple_flash_first_use = true
-var is_complete_flash_first_use = true
+var is_complete_flash_first_use = false
 var is_showing_skill_hint = false
+var on_recharge_item_area = false
 var flash_gauge_value = 100
 var pressed_time = 0
 var puzzle_item
+var recharge_item
 var enemies_on_flash_area = []
 var flash_light_energy = FLASH_ENERGY_DEFAULT
 
@@ -35,6 +37,7 @@ var flash_light_energy = FLASH_ENERGY_DEFAULT
 func _ready():
 	var _ui_flash_gauge_updated_signal = Events.connect("ui_flash_gauge_updated", self, "_on_Ui_flash_gauge_updated")
 	add_to_group("player")
+	$InteractionArea.add_to_group("player")
 	
 	available_skill = set_skill_state
 
@@ -42,7 +45,7 @@ func _ready():
 func _process(delta):
 	if not is_showing_skill_hint:
 		view_movement()
-	if on_skill_area or on_puzzle_item_area:
+	if on_skill_area or on_puzzle_item_area or on_recharge_item_area:
 		get_interaction_input()
 	if available_skill != SkillState.NO_SKILL:
 		get_skill_input(delta)
@@ -111,6 +114,7 @@ func get_interaction_input():
 				available_skill = SkillState.COMPLETE_SKILL
 				Events.emit_signal("ui_complete_skill_hint")
 				Events.emit_signal("ui_set_flash_gauge_value", 100)
+				is_complete_flash_first_use = true
 			on_skill_area = false
 		if on_puzzle_item_area:
 			if puzzle_item.is_flash_light_required():
@@ -120,14 +124,19 @@ func get_interaction_input():
 			else:
 				Events.emit_signal("get_puzzle_item", puzzle_item.get_item_name())
 				$Inventory.set_actual_item(puzzle_item.get_item_name())
-
+			on_puzzle_item_area = false
+		if on_recharge_item_area:
+			Events.emit_signal("get_flash_recharge_item", recharge_item)
+			on_recharge_item_area = false
 
 func get_skill_input(delta):
-	# mouse click
+	#print(available_skill)
 	if Input.is_action_pressed("player_skill_use"):
+		print("trying to use skill")
 		pressed_time += delta
 	if Input.is_action_just_released("player_skill_use") and pressed_time < 0.3:
-		if available_skill == SkillState.SIMPLE_SKILL:
+		print("trying to use skill simple")
+		if not is_complete_flash_first_use:
 			if flash_gauge_value >= 25:
 				do_skill_simple_action()
 			if is_simple_flash_first_use:
@@ -139,7 +148,9 @@ func get_skill_input(delta):
 				is_showing_skill_hint = false
 		pressed_time = 0
 	elif Input.is_action_just_released("player_skill_use"):
+		print("trying to use skill complete")
 		if available_skill == SkillState.COMPLETE_SKILL:
+			print(flash_gauge_value)
 			if flash_gauge_value >= 100:
 				do_skill_complete_action()
 			if is_complete_flash_first_use:
@@ -181,6 +192,10 @@ func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("puzzle_item") and not on_puzzle_item_area:
 		on_puzzle_item_area = true
 		puzzle_item = area
+	
+	if area.is_in_group("flash_recharge_item"):
+		recharge_item = area
+		on_recharge_item_area = true
 
 
 func _on_InteractionArea_area_exited(area):
@@ -192,6 +207,9 @@ func _on_InteractionArea_area_exited(area):
 			on_puzzle_item_area = false
 			puzzle_item = null
 
+	if area.is_in_group("flash_recharge_item"):
+		recharge_item = null
+		on_recharge_item_area = false
 
 func _on_Timer_timeout():
 	match flash_state:

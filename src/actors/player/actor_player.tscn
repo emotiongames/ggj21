@@ -54,8 +54,8 @@ animations = [ {
 radius = 47.094
 height = 137.54
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 105.023, 135.627 )
+[sub_resource type="CircleShape2D" id=9]
+radius = 177.403
 
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 52.0249
@@ -76,10 +76,10 @@ shape = SubResource( 6 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 2048
-collision_mask = 4
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource( 7 )
+shape = SubResource( 9 )
 
 [node name="Light2D" type="Light2D" parent="."]
 enabled = false
