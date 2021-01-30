@@ -1,6 +1,5 @@
 extends Node2D
 
-#const enemy = preload("res://src/actors/enemy_level_3/actor_enemy_level_3.tscn")
 
 export (NodePath) var spawn_points
 export (NodePath) var navigation_area
