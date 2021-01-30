@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/actors/player/actor_player_script.gd" type="Script" id=1]
 [ext_resource path="res://src/lights/effects_item_camera/light_shadow_light.png" type="Texture" id=2]
@@ -55,7 +55,11 @@ radius = 47.094
 height = 137.54
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 38.685, 87.4706 )
+extents = Vector2( 105.023, 135.627 )
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 52.0249
+height = 103.813
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2051
@@ -111,6 +115,13 @@ polygon = PoolVector2Array( 58.8665, 1.66443, 324.59, -141.288, 318.704, 132.844
 
 [node name="Inventory" type="Node2D" parent="."]
 script = ExtResource( 6 )
+
+[node name="EnemyInteractionArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInteractionArea"]
+shape = SubResource( 8 )
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_InteractionArea_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_InteractionArea_area_exited"]
 [connection signal="timeout" from="Flash/Timer" to="." method="_on_Timer_timeout"]
@@ -118,3 +129,4 @@ script = ExtResource( 6 )
 [connection signal="area_exited" from="Flash/FlashArea" to="." method="_on_FlashArea_area_exited"]
 [connection signal="body_entered" from="Flash/FlashArea" to="." method="_on_FlashArea_body_entered"]
 [connection signal="body_exited" from="Flash/FlashArea" to="." method="_on_FlashArea_body_exited"]
+[connection signal="body_entered" from="EnemyInteractionArea" to="." method="_on_EnemyInteractionArea_body_entered"]
