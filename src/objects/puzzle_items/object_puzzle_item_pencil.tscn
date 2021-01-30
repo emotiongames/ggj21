@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/objects/puzzle_items/object_puzzle_item_pencil_script.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 129.888
+radius = 37.9256
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -26.9028, -28.9308, -26.9028, 23.3951, 26.8373, 25.5164, 30.3729, -31.7592 )
 
 [node name="Pencil" type="Area2D"]
 collision_layer = 5
@@ -17,5 +20,9 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-[connection signal="body_entered" from="." to="." method="_on_Pencil_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_Pencil_body_exited"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+occluder = SubResource( 2 )
+[connection signal="area_entered" from="." to="." method="_on_Pencil_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Pencil_area_exited"]

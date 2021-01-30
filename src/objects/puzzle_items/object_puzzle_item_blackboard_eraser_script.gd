@@ -5,9 +5,9 @@ func switch_sprites():
 	$AfterPhotograph.show()
 
 
-func _on_BlackboardEraser_body_entered(body):
-	._on_PuzzleItemBase_body_entered(body)
+func _on_BlackboardEraser_area_entered(area):
+	._on_PuzzleItemBase_body_entered(area)
 
 
-func _on_BlackboardEraser_body_exited(body):
-	._on_PuzzleItemBase_body_exited(body)
+func _on_BlackboardEraser_area_exited(area):
+	._on_PuzzleItemBase_body_exited(area)

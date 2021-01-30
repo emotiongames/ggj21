@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/actors/enemy_level_1/actor_enemy_level_1_script.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 29.7887
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -30.3228, -28.9215, -29.1336, 27.5658, 28.5429, 25.1874, 28.5429, -28.3269 )
 
 [node name="EnemyLevel1" type="KinematicBody2D"]
 collision_layer = 4097
@@ -33,5 +36,9 @@ one_shot = true
 [node name="StandstillTimer" type="Timer" parent="Timers"]
 wait_time = 5.0
 one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+occluder = SubResource( 2 )
 [connection signal="timeout" from="Timers/IdleTimer" to="." method="_on_IdleTimer_timeout"]
 [connection signal="timeout" from="Timers/StandstillTimer" to="." method="_on_StandstillTimer_timeout"]

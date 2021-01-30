@@ -14,9 +14,9 @@ func _on_Puzzle_unlock_item(item):
 		$CollisionShape2D.set_deferred("disabled", false)
 
 
-func _on_Pencil_body_entered(body):
-	._on_PuzzleItemBase_body_entered(body)
+func _on_Pencil_area_entered(area):
+	._on_PuzzleItemBase_body_entered(area)
 
 
-func _on_Pencil_body_exited(body):
-	._on_PuzzleItemBase_body_exited(body)
+func _on_Pencil_area_exited(area):
+	._on_PuzzleItemBase_body_exited(area)
