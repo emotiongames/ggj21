@@ -8,7 +8,7 @@ func _ready():
 	set_pause_mode(2)
 
 
-func _on_Button_button_down():
+func _on_Button_button_up():
 	match button_name:
 		"Resume":
 			Events.emit_signal("resume_game")

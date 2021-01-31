@@ -45,4 +45,4 @@ custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_hover = Color( 0.180392, 0.290196, 0.32549, 1 )
 custom_colors/font_color_pressed = Color( 0.219608, 0.231373, 0.298039, 1 )
 text = "Back"
-[connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

@@ -3,7 +3,7 @@
 [ext_resource path="res://src/assets/fonts/text_button_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/ui/screens/menus/main/elements/ui_screen_menu_main_button_script.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -29,7 +29,7 @@ margin_left = 15.0
 margin_top = 10.0
 margin_right = 249.0
 margin_bottom = 47.0
-custom_styles/hover = SubResource( 6 )
+custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
@@ -38,4 +38,4 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_hover = Color( 0.180392, 0.290196, 0.32549, 1 )
 custom_colors/font_color_pressed = Color( 0.219608, 0.231373, 0.298039, 1 )
 text = "Example Text"
-[connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]
