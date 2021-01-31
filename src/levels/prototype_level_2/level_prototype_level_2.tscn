@@ -19,7 +19,6 @@ tile_data = PoolIntArray( -917389, 5, 0, -917388, 5, 0, -917387, 5, 0, -917386, 
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 6556.73, 3214.29 )
-speed = 800
 set_skill_state = 1
 
 [node name="ExitStair" parent="." instance=ExtResource( 3 )]
