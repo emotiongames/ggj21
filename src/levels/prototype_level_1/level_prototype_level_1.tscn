@@ -24,7 +24,6 @@ tile_data = PoolIntArray( -2883464, 1, 0, -2817938, 1, 0, -2817933, 1, 0, -28179
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 6197.35, -1585.74 )
 speed = 400
-set_skill_state = 1
 
 [node name="EnemyLevel1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 6772.09, -1487.49 )
