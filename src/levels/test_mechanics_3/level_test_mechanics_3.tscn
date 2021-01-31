@@ -43,8 +43,8 @@ spawn_points = NodePath("../EnemySpawnPoints")
 navigation_area = NodePath("../Navigation2D")
 enemy = ExtResource( 6 )
 waves = [ {
-"enemies_on_screen": 1,
-"total_enemies": 2,
+"enemies_on_screen": 7,
+"total_enemies": 14,
 "wave": 0
 }, {
 "enemies_on_screen": 3,

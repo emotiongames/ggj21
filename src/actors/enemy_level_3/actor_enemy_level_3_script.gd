@@ -26,6 +26,7 @@ func _ready():
 	if instanced_navigation_area == null:
 		instanced_navigation_area = get_node(navigation_area)
 	add_to_group("enemy")
+	$EnemySpawnCollisionArea.add_to_group("spawn_collision")
 
 
 func _physics_process(delta):
@@ -93,3 +94,10 @@ func _on_Do_damage_on_enemy(enemy):
 
 func set_navigation_area(node):
 	instanced_navigation_area = node
+
+
+func _on_EnemySpawnCollisionArea_area_entered(area):
+	if area.is_in_group("spawn_collision"):
+		print("collision detected")
+		queue_free()
+	#pass # Replace with function body.

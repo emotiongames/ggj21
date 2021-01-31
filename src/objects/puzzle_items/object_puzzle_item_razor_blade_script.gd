@@ -20,3 +20,9 @@ func _on_RazorBlade_area_entered(area):
 
 func _on_RazorBlade_area_exited(area):
 	._on_PuzzleItemBase_body_exited(area)
+
+
+func _on_Get_puzzle_item(item):
+	if item == item_name:
+		Events.emit_signal("spawn_interactive_item", "stair")
+		queue_free()

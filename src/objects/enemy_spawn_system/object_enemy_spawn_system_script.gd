@@ -53,7 +53,6 @@ func do_spawn(spawn_point):
 		add_child(instaced_enemy)
 		total_spawned_enemies += 1
 		last_spawn_point = spawn_point
-		print("spawning_enemies")
 
 
 func get_random_spawn_point():

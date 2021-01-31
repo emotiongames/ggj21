@@ -19,6 +19,7 @@ tile_data = PoolIntArray( -917389, 5, 0, -917388, 5, 0, -917387, 5, 0, -917386, 
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 6556.73, 3214.29 )
+speed = 800
 set_skill_state = 1
 
 [node name="ExitStair" parent="." instance=ExtResource( 3 )]
@@ -32,14 +33,17 @@ next_game_scene = ExtResource( 4 )
 position = Vector2( 8474.42, -383.566 )
 unlock_item = NodePath("../EnvelopeLetter")
 is_item_to_unlock = true
+require_flash_light = true
 
 [node name="RazorBlade" parent="PuzzleItems" instance=ExtResource( 7 )]
 position = Vector2( 1414.4, 958.917 )
+is_item_to_unlock = true
 
 [node name="EnvelopeLetter" parent="PuzzleItems" instance=ExtResource( 6 )]
 position = Vector2( 8558.33, 5621.65 )
 unlock_item = NodePath("../RazorBlade")
 is_item_to_unlock = true
+require_flash_light = true
 
 [node name="BlackboardEraser" parent="PuzzleItems" instance=ExtResource( 8 )]
 position = Vector2( 3967.52, 5417.88 )

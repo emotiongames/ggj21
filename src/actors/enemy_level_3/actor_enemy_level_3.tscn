@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/enemy_level_3/actor_enemy_level_3_script.gd" type="Script" id=2]
@@ -8,6 +8,9 @@ radius = 30.9251
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( -30.5078, -30.328, -29.0095, 25.8585, 25.6787, 29.6042, 30.9228, -26.5823 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 23.7156
 
 [node name="EnemyLevel3" type="KinematicBody2D"]
 collision_layer = 4168
@@ -33,4 +36,12 @@ one_shot = true
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 show_behind_parent = true
 occluder = SubResource( 2 )
+
+[node name="EnemySpawnCollisionArea" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnCollisionArea"]
+shape = SubResource( 3 )
 [connection signal="timeout" from="StandstillTimer" to="." method="_on_StandstillTimer_timeout"]
+[connection signal="area_entered" from="EnemySpawnCollisionArea" to="." method="_on_EnemySpawnCollisionArea_area_entered"]
