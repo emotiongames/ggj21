@@ -162,3 +162,8 @@ position = Vector2( 886.333, 117.466 )
 position = Vector2( -293.453, 71.8737 )
 
 [node name="InGameScreen" parent="." instance=ExtResource( 2 )]
+
+[node name="InGameScreen" parent="InGameScreen" index="0"]
+show_flash_hud = true
+
+[editable path="InGameScreen"]

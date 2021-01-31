@@ -11,6 +11,7 @@ func _ready():
 
 
 func _on_Button_button_up():
+	get_tree().paused = false
 	if button_name == "Main Menu":
 		get_tree().change_scene("res://src/ui/screens/menus/main/ui_screens_menu_main.tscn")
 	else:

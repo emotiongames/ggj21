@@ -50,3 +50,8 @@ unlock_item = NodePath("../Diary")
 is_item_to_unlock = true
 
 [node name="InGameScreen" parent="." instance=ExtResource( 5 )]
+
+[node name="InGameScreen" parent="InGameScreen" index="0"]
+show_flash_hud = true
+
+[editable path="InGameScreen"]

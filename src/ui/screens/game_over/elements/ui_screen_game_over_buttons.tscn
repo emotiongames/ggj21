@@ -13,16 +13,16 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_top = 20.0
 margin_right = 522.0
-margin_bottom = 63.0
+margin_bottom = 83.0
 custom_constants/separation = 30
 
 [node name="RestartLevel" parent="HBoxContainer" instance=ExtResource( 2 )]
 margin_right = 246.0
-margin_bottom = 43.0
+margin_bottom = 63.0
 button_name = "Try Again"
 
 [node name="MainMenu" parent="HBoxContainer" instance=ExtResource( 2 )]
 margin_left = 276.0
 margin_right = 522.0
-margin_bottom = 43.0
+margin_bottom = 63.0
 button_name = "Main Menu"
