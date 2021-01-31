@@ -7,7 +7,6 @@
 [ext_resource path="res://src/assets/player/asset_player_spritesheet.png" type="Texture" id=5]
 [ext_resource path="res://src/actors/player/actor_player_inventory_script.gd" type="Script" id=6]
 
-
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 5 )
@@ -16,12 +15,12 @@ region = Rect2( 0, 0, 160, 320 )
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 5 )
-region = Rect2( 480, 0, 160, 320 )
+region = Rect2( 320, 0, 160, 320 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 5 )
-region = Rect2( 320, 0, 160, 320 )
+region = Rect2( 480, 0, 160, 320 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
@@ -37,12 +36,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
-"name": "walk_E",
+"name": "walk_W",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
-"name": "walk_W",
+"name": "walk_E",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 4 ) ],
@@ -70,7 +69,7 @@ height = 115.879
 collision_layer = 2051
 collision_mask = 2147483649
 script = ExtResource( 1 )
-speed = 400
+speed = 600
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 4.2045, -30.2723 )

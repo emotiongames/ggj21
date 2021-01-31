@@ -29,3 +29,6 @@ signal start_spawn_recharges
 signal spawn_interactive_item(item)
 
 signal go_to_next_scene
+signal game_over
+signal pause_game
+signal resume_game

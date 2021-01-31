@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/ui/screens/end_game/elements/ui_screen_end_game_button_script.gd" type="Script" id=1]
+[ext_resource path="res://src/assets/fonts/text_button_font.tres" type="DynamicFont" id=2]
+
+[node name="EndGameButton" type="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_right = 246.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 2 )
+text = "Example Text"
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

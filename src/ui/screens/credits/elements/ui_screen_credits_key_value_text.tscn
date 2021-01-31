@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/ui/screens/credits/elements/ui_screen_credits_key_value_text_script.gd" type="Script" id=1]
+[ext_resource path="res://src/assets/fonts/VT323-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/assets/fonts/text_credits_font.tres" type="DynamicFont" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+outline_size = 2
+outline_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+extra_spacing_char = 6
+font_data = ExtResource( 2 )
+
+[node name="KeyValueText" type="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 45
+custom_constants/margin_left = 45
+custom_constants/margin_bottom = 30
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 45.0
+margin_right = 532.0
+margin_bottom = 25.0
+
+[node name="KeyText" type="Label" parent="HBoxContainer"]
+margin_right = 186.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+text = "Example Key:"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 190.0
+margin_right = 487.0
+margin_bottom = 25.0
+custom_constants/margin_left = 15
+
+[node name="ValueText" type="Label" parent="HBoxContainer/MarginContainer"]
+margin_left = 15.0
+margin_right = 297.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+text = "Example Value Text"

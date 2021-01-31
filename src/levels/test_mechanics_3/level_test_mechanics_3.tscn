@@ -1,13 +1,15 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/actors/player/actor_player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/ui/in_game_screen/ui_in_game_screen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/ui/hud/ui_hud.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/enemy_spawn_system/object_enemy_spawn_system.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/objects/item_powerful_flash/object_item_powerful_flash.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/objects/item_recharge/object_item_flash_recharge.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/actors/enemy_level_3/actor_enemy_level_3.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/recharge_spawn_system/object_recharge_spawn_system.tscn" type="PackedScene" id=7]
 [ext_resource path="res://icon.png" type="Texture" id=8]
+
+
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 544, -79.58, 1410, 2.42, 1554, 550.42, 808, 794.42, 102, 506.42, 110, 44.42 )

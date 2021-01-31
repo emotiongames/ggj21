@@ -4,7 +4,7 @@
 [ext_resource path="res://src/objects/tileset/prototype_floor/tileset_prototype_floor.tres" type="TileSet" id=2]
 [ext_resource path="res://src/objects/item_exit_stair/object_item_exit_stair.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/levels/prototype_level_3/level_prototype_level_3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/ui/in_game_screen/ui_in_game_screen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/ui/screens/in_game/ui_screen_in_game.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/objects/puzzle_items/object_puzzle_item_envelope_letter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/puzzle_items/object_puzzle_item_razor_blade.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/objects/puzzle_items/object_puzzle_item_blackboard_eraser.tscn" type="PackedScene" id=8]
@@ -49,7 +49,4 @@ position = Vector2( 3967.52, 5417.88 )
 unlock_item = NodePath("../Diary")
 is_item_to_unlock = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="InGameScreen" parent="CanvasLayer" instance=ExtResource( 5 )]
-show_flash_hud = true
+[node name="InGameScreen" parent="." instance=ExtResource( 5 )]

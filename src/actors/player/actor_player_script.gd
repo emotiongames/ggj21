@@ -45,6 +45,7 @@ func _ready():
 
 
 func _process(delta):
+	get_ux_input()
 	if not is_showing_skill_hint:
 		view_movement()
 	if on_skill_area or on_puzzle_item_area or on_recharge_item_area or on_exit_stair_area:
@@ -56,6 +57,10 @@ func _physics_process(delta):
 	if flash_state == FlashState.STATE_0 and not is_showing_skill_hint:
 		move()
 
+
+func get_ux_input():
+	if Input.is_action_pressed('ui_pause_game'):
+		Events.emit_signal("pause_game")
 
 func view_movement():
 	var view_direction = $ViewDirection.global_position.direction_to(get_global_mouse_position())
@@ -280,5 +285,5 @@ func _on_FlashArea_area_exited(area):
 
 func _on_EnemyInteractionArea_body_entered(body):
 	if body.is_in_group("enemy"):
-		print("enemy te matou")
-		get_tree().reload_current_scene()
+		Events.emit_signal("game_over")
+		#queue_free()

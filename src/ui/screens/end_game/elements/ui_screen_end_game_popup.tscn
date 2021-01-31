@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/ui/screens/end_game/elements/ui_screen_end_game_buttons.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/assets/fonts/text_title_popup.tres" type="DynamicFont" id=2]
+
+[node name="EndGamePopup" type="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 720.0
+margin_bottom = 167.0
+
+[node name="CenterMessageContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 720.0
+margin_bottom = 100.0
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterMessageContainer"]
+margin_right = 720.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 2 )
+text = "Thank you for play"
+
+[node name="CenterButtonsContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 104.0
+margin_right = 720.0
+margin_bottom = 167.0
+
+[node name="MarginContainer" parent="VBoxContainer/CenterButtonsContainer" instance=ExtResource( 1 )]
+margin_left = 99.0
+margin_right = 621.0
+margin_bottom = 63.0

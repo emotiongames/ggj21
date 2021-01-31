@@ -23,6 +23,7 @@ var is_player_on_field_view = false
 func _ready():
 	var  _player_position_updated_signal = Events.connect("player_position_updated", self, "_on_Player_position_updated")
 	var _do_paralyze_enemy_signal = Events.connect("do_paralyze_enemy", self, "_on_Do_paralyze_enemy")
+	var _game_over_signal = Events.connect("game_over", self, "_on_Game_over")
 	$RayCast2D.set_cast_to(raycast_direction)
 	if instanced_nav_points == null:
 		instanced_nav_points = get_node(nav_points).get_children()
@@ -139,3 +140,8 @@ func set_navigation_area(node):
 func set_navigation_points(points):
 	instanced_nav_points = points.get_children()
 	nav_points_counter = len(instanced_nav_points)
+
+
+func _on_Game_over():
+	pass
+	#queue_free()
