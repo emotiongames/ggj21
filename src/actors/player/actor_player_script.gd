@@ -26,6 +26,7 @@ var is_simple_flash_first_use = true
 var is_complete_flash_first_use = false
 var is_showing_skill_hint = false
 var on_recharge_item_area = false
+var on_exit_stair_area = false
 var flash_gauge_value = 100
 var pressed_time = 0
 var puzzle_item
@@ -46,7 +47,7 @@ func _ready():
 func _process(delta):
 	if not is_showing_skill_hint:
 		view_movement()
-	if on_skill_area or on_puzzle_item_area or on_recharge_item_area:
+	if on_skill_area or on_puzzle_item_area or on_recharge_item_area or on_exit_stair_area:
 		get_interaction_input()
 	if available_skill != SkillState.NO_SKILL:
 		get_skill_input(delta)
@@ -129,6 +130,9 @@ func get_interaction_input():
 		if on_recharge_item_area:
 			Events.emit_signal("get_flash_recharge_item", recharge_item)
 			on_recharge_item_area = false
+		if on_exit_stair_area:
+			Events.emit_signal("go_to_next_scene")
+			on_exit_stair_area = false
 
 func get_skill_input(delta):
 	if Input.is_action_pressed("player_skill_use"):
@@ -138,23 +142,34 @@ func get_skill_input(delta):
 			if flash_gauge_value >= 25:
 				do_skill_simple_action()
 			if is_simple_flash_first_use:
-				# Luzes se apagam
-				# Som fica mais sombrio
-				# Skill hint é oculta
-				Events.emit_signal("ui_hide_skill_hint")
-				is_simple_flash_first_use = false
-				is_showing_skill_hint = false
+				do_first_simple_flash_use()
 		pressed_time = 0
 	elif Input.is_action_just_released("player_skill_use"):
 		if available_skill == SkillState.COMPLETE_SKILL:
 			if flash_gauge_value >= 100:
 				do_skill_complete_action()
 			if is_complete_flash_first_use:
-				# Inimigos começam a spawnar na arena
-				Events.emit_signal("ui_hide_skill_hint")
-				is_complete_flash_first_use = false
-				is_showing_skill_hint = false
+				do_first_complete_flash_use()
 		pressed_time = 0
+
+
+func do_first_simple_flash_use():
+	# Luzes se apagam
+	# Som fica mais sombrio
+	# Skill hint é oculta
+	Events.emit_signal("ui_hide_skill_hint")
+	Events.emit_signal("start_spawn_enemies", 1)
+	is_simple_flash_first_use = false
+	is_showing_skill_hint = false
+
+
+func do_first_complete_flash_use():
+	# Inimigos começam a spawnar na arena
+	Events.emit_signal("ui_hide_skill_hint")
+	Events.emit_signal("start_spawn_enemies", 3)
+	Events.emit_signal("start_spawn_recharges")
+	is_complete_flash_first_use = false
+	is_showing_skill_hint = false
 
 
 func do_skill_simple_action():
@@ -192,6 +207,9 @@ func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("flash_recharge_item"):
 		recharge_item = area
 		on_recharge_item_area = true
+	
+	if area.is_in_group("exit_stair"):
+		on_exit_stair_area = true
 
 
 func _on_InteractionArea_area_exited(area):
@@ -206,6 +224,10 @@ func _on_InteractionArea_area_exited(area):
 	if area.is_in_group("flash_recharge_item"):
 		recharge_item = null
 		on_recharge_item_area = false
+	
+	if area.is_in_group("exit_stair"):
+		on_exit_stair_area = false 
+
 
 func _on_Timer_timeout():
 	match flash_state:

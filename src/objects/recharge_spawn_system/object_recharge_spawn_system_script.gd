@@ -33,6 +33,7 @@ func do_spawn():
 		instaced_recharge.global_position = spawn_point.global_position
 		add_child(instaced_recharge)
 		last_spawn_point = spawn_point
+		print("spawning_recharges")
 
 
 func get_random_spawn_point():

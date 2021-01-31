@@ -8,6 +8,7 @@ func _ready():
 
 
 func _on_Get_skill():
+	Events.emit_signal("spawn_interactive_item", "stair")
 	queue_free()
 
 

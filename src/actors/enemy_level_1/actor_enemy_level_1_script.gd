@@ -24,10 +24,12 @@ func _ready():
 	var  _player_position_updated_signal = Events.connect("player_position_updated", self, "_on_Player_position_updated")
 	var _do_paralyze_enemy_signal = Events.connect("do_paralyze_enemy", self, "_on_Do_paralyze_enemy")
 	$RayCast2D.set_cast_to(raycast_direction)
-	instanced_nav_points = get_node(nav_points).get_children()
-	nav_points_counter = len(instanced_nav_points)
-	instanced_navigation_area = get_node(navigation_area)
+	if instanced_nav_points == null:
+		instanced_nav_points = get_node(nav_points).get_children()
+		nav_points_counter = len(instanced_nav_points)
 	add_to_group("enemy")
+	if instanced_navigation_area == null:
+		instanced_navigation_area = get_node(navigation_area)
 
 func _physics_process(delta):
 	$RayCastFacingDirection.set_cast_to(facing_direction.normalized() * raycast_facing_distance)
@@ -128,3 +130,12 @@ func _on_StandstillTimer_timeout():
 func _on_IdleTimer_timeout():
 	choose_destination()
 	enemy_state = EnemyState.WALKING
+
+
+func set_navigation_area(node):
+	instanced_navigation_area = node
+
+
+func set_navigation_points(points):
+	instanced_nav_points = points.get_children()
+	nav_points_counter = len(instanced_nav_points)

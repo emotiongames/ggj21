@@ -69,6 +69,7 @@ height = 115.879
 collision_layer = 2051
 collision_mask = 2147483649
 script = ExtResource( 1 )
+speed = 400
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 4.2045, -30.2723 )
@@ -117,6 +118,7 @@ polygon = PoolVector2Array( 58.8665, 1.66443, 324.59, -141.288, 318.704, 132.844
 [node name="ViewDirection" type="Position2D" parent="."]
 
 [node name="Camera2D" parent="." instance=ExtResource( 4 )]
+zoom = Vector2( 1.8, 1.8 )
 
 [node name="Inventory" type="Node2D" parent="."]
 script = ExtResource( 6 )
