@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/ui/screens/game_over/elements/ui_screen_game_over_button_script.gd" type="Script" id=1]
 [ext_resource path="res://src/assets/fonts/text_button_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/assets/audio/button/hover.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/assets/audio/button/pressed.wav" type="AudioStream" id=4]
 
 [node name="GameOverButton" type="MarginContainer"]
 margin_right = 40.0
@@ -18,4 +20,12 @@ margin_right = 246.0
 margin_bottom = 63.0
 custom_fonts/font = ExtResource( 2 )
 text = "Example Text"
+
+[node name="Focused" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Pressed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="finished" from="Pressed" to="." method="_on_Pressed_finished"]

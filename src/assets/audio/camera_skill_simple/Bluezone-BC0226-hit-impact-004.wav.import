@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bluezone-BC0226-hit-impact-004.wav-4e3c2b82dd76b3fd40456e16d36ed8f6.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/camera_skill_simple/Bluezone-BC0226-hit-impact-004.wav"
+dest_files=[ "res://.import/Bluezone-BC0226-hit-impact-004.wav-4e3c2b82dd76b3fd40456e16d36ed8f6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

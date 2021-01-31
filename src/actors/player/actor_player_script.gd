@@ -27,6 +27,7 @@ var is_complete_flash_first_use = false
 var is_showing_skill_hint = false
 var on_recharge_item_area = false
 var on_exit_stair_area = false
+var is_walking = false
 var flash_gauge_value = 100
 var pressed_time = 0
 var puzzle_item
@@ -65,7 +66,15 @@ func get_ux_input():
 func view_movement():
 	var view_direction = $ViewDirection.global_position.direction_to(get_global_mouse_position())
 	var looking_to = get_look_direction(view_direction)
-	$AnimatedSprite.animation = "walk_" + looking_to
+	if is_walking:
+		if int(velocity.dot(view_direction)) != 0:
+			$AnimatedSprite.play("walk_" + looking_to, true)
+		else:
+			$AnimatedSprite.play()
+	else:
+		if $AnimatedSprite.playing:
+			$AnimatedSprite.stop()
+		#$AnimatedSprite.animation = "stand_" + looking_to
 	if flash_state == FlashState.STATE_0:
 		$Flash.look_at(get_global_mouse_position())
 
@@ -92,20 +101,29 @@ func get_look_direction(direction):
 func move():
 	get_movement_input()
 	velocity = move_and_slide(velocity)
+	if velocity != Vector2():
+		is_walking = true
+	else:
+		is_walking = false
 
 
 func get_movement_input():
 	velocity = Vector2()
 	if Input.is_action_pressed('player_movement_right'):
+		Events.emit_signal("audio_play", "footsteps")
 		velocity.x += 1
 	if Input.is_action_pressed('player_movement_left'):
+		Events.emit_signal("audio_play", "footsteps")
 		velocity.x -= 1
 	if Input.is_action_pressed('player_movement_down'):
+		Events.emit_signal("audio_play", "footsteps")
 		velocity.y += 1
 	if Input.is_action_pressed('player_movement_up'):
+		Events.emit_signal("audio_play", "footsteps")
 		velocity.y -= 1
 	velocity = velocity.normalized() * speed
 	Events.emit_signal("player_position_updated", self.global_position)
+	
 
 
 func get_interaction_input():
@@ -117,11 +135,19 @@ func get_interaction_input():
 				available_skill = SkillState.SIMPLE_SKILL
 				$Light2D.enabled = true
 				Events.emit_signal("ui_simple_skill_hint")
+				if is_walking:
+					is_walking = false
+					if $AnimatedSprite.playing:
+						$AnimatedSprite.stop()
 			elif available_skill == SkillState.SIMPLE_SKILL:
 				available_skill = SkillState.COMPLETE_SKILL
 				Events.emit_signal("ui_complete_skill_hint")
 				Events.emit_signal("ui_set_flash_gauge_value", 100)
 				is_complete_flash_first_use = true
+				if is_walking:
+					is_walking = false
+					if $AnimatedSprite.playing:
+						$AnimatedSprite.stop()
 			on_skill_area = false
 		if on_puzzle_item_area:
 			if puzzle_item.is_flash_light_required():
@@ -146,6 +172,7 @@ func get_skill_input(delta):
 		if not is_complete_flash_first_use:
 			if flash_gauge_value >= 25:
 				do_skill_simple_action()
+				Events.emit_signal("audio_play", "flash_simple")				
 			if is_simple_flash_first_use:
 				do_first_simple_flash_use()
 		pressed_time = 0
@@ -153,6 +180,7 @@ func get_skill_input(delta):
 		if available_skill == SkillState.COMPLETE_SKILL:
 			if flash_gauge_value >= 100:
 				do_skill_complete_action()
+				Events.emit_signal("audio_play", "flash_complete")
 			if is_complete_flash_first_use:
 				do_first_complete_flash_use()
 		pressed_time = 0
@@ -164,6 +192,7 @@ func do_first_simple_flash_use():
 	# Skill hint é oculta
 	Events.emit_signal("ui_hide_skill_hint")
 	Events.emit_signal("start_spawn_enemies", 1)
+	Events.emit_signal("audio_play", "get_simple_skill")
 	is_simple_flash_first_use = false
 	is_showing_skill_hint = false
 
@@ -173,6 +202,7 @@ func do_first_complete_flash_use():
 	Events.emit_signal("ui_hide_skill_hint")
 	Events.emit_signal("start_spawn_enemies", 3)
 	Events.emit_signal("start_spawn_recharges")
+	Events.emit_signal("audio_play", "get_complete_skill")	
 	is_complete_flash_first_use = false
 	is_showing_skill_hint = false
 

@@ -9,6 +9,10 @@ func _ready():
 
 
 func _on_Button_button_up():
+	$Pressed.play()
+
+
+func _on_Pressed_finished():
 	match button_name:
 		"Resume":
 			Events.emit_signal("resume_game")
@@ -21,3 +25,7 @@ func _on_Button_button_up():
 		"Exit Game":
 			get_tree().paused = false
 			get_tree().change_scene("res://src/ui/screens/exit_game/ui_screen_exit_game.tscn")
+
+
+func _on_Button_mouse_entered():
+	$Focused.play()

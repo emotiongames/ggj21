@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PM_TS_Camera_Film_35mm_SLR_CANON_A1_MKH8040_52_Shutter_Release_1_60th_51 (online-audio-converter.com).wav-9a2a3af7b97477d1e4c8a0ec6b2ceb21.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/camera_skill_simple/PM_TS_Camera_Film_35mm_SLR_CANON_A1_MKH8040_52_Shutter_Release_1_60th_51 (online-audio-converter.com).wav"
+dest_files=[ "res://.import/PM_TS_Camera_Film_35mm_SLR_CANON_A1_MKH8040_52_Shutter_Release_1_60th_51 (online-audio-converter.com).wav-9a2a3af7b97477d1e4c8a0ec6b2ceb21.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -82,6 +82,7 @@ margin_top = 728.0
 margin_right = 1920.0
 margin_bottom = 925.0
 custom_constants/margin_top = 150
+custom_constants/margin_left = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }

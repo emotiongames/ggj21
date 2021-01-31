@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/assets/fonts/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/ui/screens/credits/elements/ui_screen_credits_back_button_script.gd" type="Script" id=2]
+[ext_resource path="res://src/assets/audio/button/hover.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/assets/audio/button/pressed.wav" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -45,4 +47,12 @@ custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_hover = Color( 0.180392, 0.290196, 0.32549, 1 )
 custom_colors/font_color_pressed = Color( 0.219608, 0.231373, 0.298039, 1 )
 text = "Back"
+
+[node name="Focused" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Pressed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="finished" from="Pressed" to="." method="_on_Pressed_finished"]

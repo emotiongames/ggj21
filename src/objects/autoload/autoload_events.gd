@@ -32,3 +32,5 @@ signal go_to_next_scene
 signal game_over
 signal pause_game
 signal resume_game
+
+signal audio_play(audio_name)

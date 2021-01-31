@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PM_TS_Camera_Film_35mm_SLR_PRACTIKA_DTL3_MKH8040_28_Shutter_Release_1_60th_28 (online-audio-converter.com).wav-02cf73675fc7aa35526ff45603a970c3.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/camera_skill_complete/PM_TS_Camera_Film_35mm_SLR_PRACTIKA_DTL3_MKH8040_28_Shutter_Release_1_60th_28 (online-audio-converter.com).wav"
+dest_files=[ "res://.import/PM_TS_Camera_Film_35mm_SLR_PRACTIKA_DTL3_MKH8040_28_Shutter_Release_1_60th_28 (online-audio-converter.com).wav-02cf73675fc7aa35526ff45603a970c3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

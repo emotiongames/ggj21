@@ -11,7 +11,14 @@ func _ready():
 
 
 func _on_Button_button_up():
-	get_tree().paused = false
+	$Pressed.play()
+
+
+func _on_Button_mouse_entered():
+	$Focused.play()
+
+
+func _on_Pressed_finished():
 	if button_name == "Main Menu":
 		get_tree().change_scene("res://src/ui/screens/menus/main/ui_screens_menu_main.tscn")
 	else:

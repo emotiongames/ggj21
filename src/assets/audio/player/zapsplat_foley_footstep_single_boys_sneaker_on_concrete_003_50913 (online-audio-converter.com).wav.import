@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_foley_footstep_single_boys_sneaker_on_concrete_003_50913 (online-audio-converter.com).wav-27239aee9037bc9da76ea9a10656af95.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/player/zapsplat_foley_footstep_single_boys_sneaker_on_concrete_003_50913 (online-audio-converter.com).wav"
+dest_files=[ "res://.import/zapsplat_foley_footstep_single_boys_sneaker_on_concrete_003_50913 (online-audio-converter.com).wav-27239aee9037bc9da76ea9a10656af95.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
