@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/actors/player/actor_player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/objects/tileset/prototype_floor/tileset_prototype_floor.tres" type="TileSet" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://src/objects/puzzle_items/object_puzzle_item_razor_blade.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/objects/puzzle_items/object_puzzle_item_blackboard_eraser.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/objects/puzzle_items/object_puzzle_item_diary.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/assets/audio/item/item (online-audio-converter.com).wav" type="AudioStream" id=10]
+[ext_resource path="res://src/objects/audio/object_audio.tscn" type="PackedScene" id=11]
 
 [node name="PrototypeLevel2" type="Node2D"]
 
@@ -53,5 +55,12 @@ is_item_to_unlock = true
 
 [node name="InGameScreen" parent="InGameScreen" index="0"]
 show_flash_hud = true
+
+[node name="Audios" type="Node2D" parent="."]
+
+[node name="ItemCaught" parent="Audios" instance=ExtResource( 11 )]
+stream = ExtResource( 10 )
+volume_db = -15.0
+audio_name = "item_caught"
 
 [editable path="InGameScreen"]

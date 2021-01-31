@@ -153,14 +153,17 @@ func get_interaction_input():
 			if puzzle_item.is_flash_light_required():
 				if puzzle_item.was_item_photographed():
 					Events.emit_signal("get_puzzle_item", puzzle_item.get_item_name())
+					Events.emit_signal("audio_play", "item_caught")
 					$Inventory.set_actual_item(puzzle_item.get_item_name())
 			else:
 				Events.emit_signal("get_puzzle_item", puzzle_item.get_item_name())
 				$Inventory.set_actual_item(puzzle_item.get_item_name())
+				Events.emit_signal("audio_play", "item_caught")
 			on_puzzle_item_area = false
 		if on_recharge_item_area:
 			Events.emit_signal("get_flash_recharge_item", recharge_item)
 			on_recharge_item_area = false
+			Events.emit_signal("audio_play", "recharge_collected")
 		if on_exit_stair_area:
 			Events.emit_signal("go_to_next_scene")
 			on_exit_stair_area = false

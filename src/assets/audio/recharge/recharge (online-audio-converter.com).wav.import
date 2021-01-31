@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/recharge (online-audio-converter.com).wav-fae4402200fb5e16914e90924aca0293.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/recharge/recharge (online-audio-converter.com).wav"
+dest_files=[ "res://.import/recharge (online-audio-converter.com).wav-fae4402200fb5e16914e90924aca0293.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
