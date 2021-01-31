@@ -1,9 +1,10 @@
-[gd_scene load_steps=80 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://src/actors/player/actor_player_script.gd" type="Script" id=1]
 [ext_resource path="res://src/lights/effects_item_camera/light_shadow_light.png" type="Texture" id=2]
 [ext_resource path="res://src/lights/effects_item_camera/luz.png" type="Texture" id=3]
 [ext_resource path="res://src/objects/player_camera/object_player_camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/assets/player/kass parado1.png" type="Texture" id=5]
 [ext_resource path="res://src/actors/player/actor_player_inventory_script.gd" type="Script" id=6]
 [ext_resource path="res://src/assets/audio/camera_skill_simple/PM_TS_Camera_Film_35mm_SLR_CANON_A1_MKH8040_52_Shutter_Release_1_60th_51 (online-audio-converter.com).wav" type="AudioStream" id=7]
 [ext_resource path="res://src/objects/audio/object_audio.tscn" type="PackedScene" id=8]
@@ -331,6 +332,46 @@ flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 1120, 1600, 160, 320 )
 
+[sub_resource type="AtlasTexture" id=74]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 160, 320 )
+
+[sub_resource type="AtlasTexture" id=75]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 480, 0, 160, 320 )
+
+[sub_resource type="AtlasTexture" id=76]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 960, 0, 160, 320 )
+
+[sub_resource type="AtlasTexture" id=77]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 1120, 0, 160, 320 )
+
+[sub_resource type="AtlasTexture" id=78]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 800, 0, 160, 320 )
+
+[sub_resource type="AtlasTexture" id=79]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 320, 0, 160, 320 )
+
+[sub_resource type="AtlasTexture" id=80]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 640, 0, 160, 320 )
+
+[sub_resource type="AtlasTexture" id=81]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 160, 0, 160, 320 )
+
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
@@ -373,42 +414,42 @@ animations = [ {
 "name": "walk_N",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 74 ) ],
 "loop": true,
 "name": "stand_S",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 75 ) ],
 "loop": true,
 "name": "stand_E",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 76 ) ],
 "loop": true,
 "name": "stand_NW",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 77 ) ],
 "loop": true,
 "name": "stand_NE",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 78 ) ],
 "loop": true,
 "name": "stand_SE",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 79 ) ],
 "loop": true,
 "name": "stand_W",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 80 ) ],
 "loop": true,
 "name": "stand_SW",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 81 ) ],
 "loop": true,
 "name": "stand_N",
 "speed": 5.0
@@ -438,7 +479,7 @@ speed = 600
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 4.63261, 10.1327 )
 frames = SubResource( 5 )
-animation = "walk_S"
+animation = "walk_NE"
 speed_scale = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

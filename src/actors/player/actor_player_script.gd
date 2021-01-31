@@ -74,7 +74,7 @@ func view_movement():
 	else:
 		if $AnimatedSprite.playing:
 			$AnimatedSprite.stop()
-		#$AnimatedSprite.animation = "stand_" + looking_to
+		$AnimatedSprite.animation = "stand_" + looking_to
 	if flash_state == FlashState.STATE_0:
 		$Flash.look_at(get_global_mouse_position())
 
