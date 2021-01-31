@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/asset_player_spritesheet.png-903a42390e472f3c4f10af7041aa5e13.stex"
+path="res://.import/energy_bar_bg.png-6ba3c2f1e4236b5510c384788a330463.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/asset_player_spritesheet.png"
-dest_files=[ "res://.import/asset_player_spritesheet.png-903a42390e472f3c4f10af7041aa5e13.stex" ]
+source_file="res://src/assets/ui_flash_hud/energy_bar_bg.png"
+dest_files=[ "res://.import/energy_bar_bg.png-6ba3c2f1e4236b5510c384788a330463.stex" ]
 
 [params]
 

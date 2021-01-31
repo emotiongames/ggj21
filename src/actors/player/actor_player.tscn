@@ -4,8 +4,9 @@
 [ext_resource path="res://src/lights/effects_item_camera/light_shadow_light.png" type="Texture" id=2]
 [ext_resource path="res://src/lights/effects_item_camera/luz.png" type="Texture" id=3]
 [ext_resource path="res://src/objects/player_camera/object_player_camera.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/player/asset_player_spritesheet.png" type="Texture" id=5]
+[ext_resource path="res://src/assets/player/asset_player_spritesheet.png" type="Texture" id=5]
 [ext_resource path="res://src/actors/player/actor_player_inventory_script.gd" type="Script" id=6]
+
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -97,6 +98,7 @@ shadow_enabled = true
 [node name="Flash" type="Node2D" parent="."]
 
 [node name="Light2D" type="Light2D" parent="Flash"]
+show_behind_parent = true
 position = Vector2( 32.3739, 0 )
 enabled = false
 texture = ExtResource( 3 )

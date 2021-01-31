@@ -5,6 +5,7 @@ export (NodePath) var spawn_points
 export (NodePath) var specific_spawn_point
 export (NodePath) var navigation_area
 export (PackedScene) var enemy
+export (PackedScene) var next_game_scene
 export (Array, Dictionary) var waves
 export (bool) var test_mode = false
 export (bool) var force_spawn_on_specific_point = false
@@ -40,6 +41,8 @@ func _physics_process(_delta):
 			else:
 				actual_wave += 1
 				total_spawned_enemies = 0
+		else:
+			get_tree().change_scene_to(next_game_scene)
 
 
 func do_spawn(spawn_point):
