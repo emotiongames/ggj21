@@ -44,10 +44,14 @@ func _physics_process(delta):
 
 func detect_raycast_collision():
 	if facing_direction.dot(raycast_direction) > 0.5:
-		if $RayCast2D.is_colliding() and $RayCast2D.get_collider().is_in_group("player") and enemy_state != EnemyState.PARALYZED:
+		print($RayCast2D.get_collider())
+		if $RayCast2D.is_colliding() and $RayCast2D.get_collider().is_in_group("player_raycast_detectable") and enemy_state != EnemyState.PARALYZED:
+			print("enemy sees player")
 			is_player_on_field_view = true
 			enemy_state = EnemyState.SEEKING
 		else:
+			print("enemy no sees player")
+			
 			is_player_on_field_view = false
 
 

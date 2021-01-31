@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/actors/player/actor_player_script.gd" type="Script" id=1]
 [ext_resource path="res://src/lights/effects_item_camera/light_shadow_light.png" type="Texture" id=2]
@@ -15,12 +15,12 @@ region = Rect2( 0, 0, 160, 320 )
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 5 )
-region = Rect2( 320, 0, 160, 320 )
+region = Rect2( 480, 0, 160, 320 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 5 )
-region = Rect2( 480, 0, 160, 320 )
+region = Rect2( 320, 0, 160, 320 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
@@ -36,12 +36,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
-"name": "walk_W",
+"name": "walk_E",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
-"name": "walk_E",
+"name": "walk_W",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 4 ) ],
@@ -52,14 +52,18 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 47.094
-height = 137.54
+height = 0.0
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=7]
 radius = 177.403
 
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 52.0249
 height = 103.813
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 46.0
+height = 115.879
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2051
@@ -72,6 +76,7 @@ frames = SubResource( 5 )
 animation = "walk_S"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 74 )
 shape = SubResource( 6 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
@@ -79,7 +84,7 @@ collision_layer = 2048
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="Light2D" type="Light2D" parent="."]
 enabled = false
@@ -122,6 +127,13 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInteractionArea"]
 shape = SubResource( 8 )
+
+[node name="EnemyRaycastViewArea" type="KinematicBody2D" parent="."]
+collision_layer = 96
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyRaycastViewArea"]
+shape = SubResource( 9 )
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_InteractionArea_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_InteractionArea_area_exited"]
 [connection signal="timeout" from="Flash/Timer" to="." method="_on_Timer_timeout"]

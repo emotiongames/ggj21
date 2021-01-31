@@ -38,6 +38,7 @@ func _ready():
 	var _ui_flash_gauge_updated_signal = Events.connect("ui_flash_gauge_updated", self, "_on_Ui_flash_gauge_updated")
 	add_to_group("player")
 	$InteractionArea.add_to_group("player")
+	$EnemyRaycastViewArea.add_to_group("player_raycast_detectable")
 	
 	available_skill = set_skill_state
 
