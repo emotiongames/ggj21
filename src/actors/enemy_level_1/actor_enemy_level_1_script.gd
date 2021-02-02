@@ -39,21 +39,24 @@ func _physics_process(delta):
 	if enemy_state != EnemyState.PARALYZED:
 		if enemy_state != EnemyState.SEEKING:
 			if enemy_state == EnemyState.IDLE and $Timers/IdleTimer.is_stopped():
-				execute_idle_state()
+				pass
+				#execute_idle_state()
 			if enemy_state == EnemyState.WALKING:
-				execute_walking_state(delta)
+				pass
+				#execute_walking_state(delta)
 		else:
-			execute_seeking_state(delta)
+			pass
+			#execute_seeking_state(delta)
 
 func detect_raycast_collision():
 	if facing_direction.dot(raycast_direction) > 0.5:
-		print($RayCast2D.get_collider())
+		#print($RayCast2D.get_collider())
 		if $RayCast2D.is_colliding() and $RayCast2D.get_collider().is_in_group("player_raycast_detectable") and enemy_state != EnemyState.PARALYZED:
-			print("enemy sees player")
+			#print("enemy sees player")
 			is_player_on_field_view = true
 			enemy_state = EnemyState.SEEKING
 		else:
-			print("enemy no sees player")
+			#print("enemy no sees player")
 			
 			is_player_on_field_view = false
 
