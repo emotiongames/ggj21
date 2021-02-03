@@ -13,7 +13,6 @@ var last_spawn_point
 
 
 func _ready():
-	var _start_spawn_recharges_signal = Events.connect("start_spawn_recharges", self, "_on_Start_spawn_recharges")
 	instaced_spawn_points = get_node(spawn_points)
 	total_spawn_points = instaced_spawn_points.get_child_count()
 	if test_mode:

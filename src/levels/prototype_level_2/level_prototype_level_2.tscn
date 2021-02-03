@@ -71,8 +71,7 @@ position = Vector2( 5327.92, 228.724 )
 scene_to_unlock = ExtResource( 12 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 4172.59, 5150.43 )
-speed = 900.0
+position = Vector2( 6537.31, 3133.21 )
 set_skill = ExtResource( 4 )
 flash_hud = NodePath("../InGameScreen/InGameScreen/FlashHUD")
 skill_name = "CameraFlash"
