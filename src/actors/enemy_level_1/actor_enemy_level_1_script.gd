@@ -11,7 +11,7 @@ export (float) var raycast_facing_distance = 50
 
 var raycast_direction = Vector2(raycast_distance, 0)
 var facing_direction = Vector2(1, 0)
-var player_position : Vector2
+var player
 var nav_points_counter = 0
 var enemy_state = EnemyState.IDLE
 var instanced_nav_points = []
@@ -19,10 +19,10 @@ var instanced_navigation_area : Navigation2D
 var path : = PoolVector2Array()
 var last_enemy_state = EnemyState.IDLE
 var is_player_on_field_view = false
+var damage_area
+var is_on_damage_area = false
 
 func _ready():
-	var  _player_position_updated_signal = Events.connect("player_position_updated", self, "_on_Player_position_updated")
-	var _do_paralyze_enemy_signal = Events.connect("do_paralyze_enemy", self, "_on_Do_paralyze_enemy")
 	var _game_over_signal = Events.connect("game_over", self, "_on_Game_over")
 	$RayCast2D.set_cast_to(raycast_direction)
 	if instanced_nav_points == null:
@@ -35,29 +35,34 @@ func _ready():
 func _physics_process(delta):
 	$RayCastFacingDirection.set_cast_to(facing_direction.normalized() * raycast_facing_distance)
 	detect_raycast_collision()
+	if is_on_damage_area:
+		maybe_receive_damage()
 	
 	if enemy_state != EnemyState.PARALYZED:
+		updated_player_position()
 		if enemy_state != EnemyState.SEEKING:
 			if enemy_state == EnemyState.IDLE and $Timers/IdleTimer.is_stopped():
-				pass
-				#execute_idle_state()
+				execute_idle_state()
 			if enemy_state == EnemyState.WALKING:
-				pass
-				#execute_walking_state(delta)
+				execute_walking_state(delta)
 		else:
-			pass
-			#execute_seeking_state(delta)
+			execute_seeking_state(delta)
+
+
+func maybe_receive_damage():
+	if damage_area.active and damage_area.active_skill == "weak":
+		if enemy_state != EnemyState.PARALYZED:
+			last_enemy_state = enemy_state
+			enemy_state = EnemyState.PARALYZED
+			$Timers/StandstillTimer.start()
+
 
 func detect_raycast_collision():
 	if facing_direction.dot(raycast_direction) > 0.5:
-		#print($RayCast2D.get_collider())
 		if $RayCast2D.is_colliding() and $RayCast2D.get_collider().is_in_group("player_raycast_detectable") and enemy_state != EnemyState.PARALYZED:
-			#print("enemy sees player")
 			is_player_on_field_view = true
 			enemy_state = EnemyState.SEEKING
 		else:
-			#print("enemy no sees player")
-			
 			is_player_on_field_view = false
 
 
@@ -106,21 +111,16 @@ func choose_destination():
 	path = instanced_navigation_area.get_simple_path(self.global_position, destination)
 
 
-func _on_Player_position_updated(player_global_position):
-	player_position = player_global_position
-	raycast_direction = global_position.direction_to(player_position)
+func updated_player_position():
+	raycast_direction = global_position.direction_to(player.global_position)
 	$RayCast2D.set_cast_to(raycast_direction.normalized() * raycast_distance)
 	
 	if enemy_state == EnemyState.SEEKING:
-		path = instanced_navigation_area.get_simple_path(self.global_position, player_position)
+		path = instanced_navigation_area.get_simple_path(self.global_position, player.global_position)
 
 
-func _on_Do_paralyze_enemy(enemy):
-	if self == enemy:
-		if enemy_state != EnemyState.PARALYZED:
-			last_enemy_state = enemy_state
-			enemy_state = EnemyState.PARALYZED
-			$Timers/StandstillTimer.start()
+func follow_player(player_to_follow):
+	player = player_to_follow
 
 
 func _on_StandstillTimer_timeout():
@@ -148,3 +148,16 @@ func set_navigation_points(points):
 func _on_Game_over():
 	pass
 	#queue_free()
+
+
+func _on_DamageArea_area_entered(area):
+	if area.is_in_group("skill"):
+		is_on_damage_area = true
+		damage_area = area
+		
+
+
+func _on_DamageArea_area_exited(area):
+	if area.is_in_group("skill"):
+		is_on_damage_area = false
+		damage_area = null

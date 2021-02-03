@@ -3,6 +3,11 @@ extends Area2D
 enum SkillState {WEAK, STRONG}
 
 var states_available = []
+var active = false
+var active_skill = ""
+var skill_name = ""
+var weak_damage = 0
+var strong_damage = 0
 
 
 func _ready():
@@ -15,6 +20,22 @@ func update_facing_direction(facing_position):
 
 func play_effect(_skill_state):
 	print("please overload this 'play_effect' function")
+
+
+func set_weak_damage(value):
+	weak_damage = value
+
+
+func set_strong_damage(value):
+	strong_damage = value
+
+
+func damage_value(skill_state):
+	match skill_state:
+		SkillState.WEAK:
+			return weak_damage
+		SkillState.STRONG:
+			return strong_damage
 
 
 func unlock_state(new_skill_state):
@@ -35,3 +56,7 @@ func is_available_skill_state(skill_state):
 			return "weak" in states_available
 		SkillState.STRONG:
 			return "strong" in states_available
+
+
+func get_skill_name():
+	return skill_name

@@ -21,10 +21,14 @@ func interact():
 func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("item"):
 		item = area
-		Events.emit_signal("ui_show_interaction_hint", true)
+		$Events/ShowInteractionHint.play()
+	if area.is_in_group("puzzle_item"):
+		if area.is_unlocked():
+			item = area
+			$Events/ShowInteractionHint.play()
 
 
 func _on_InteractionArea_area_exited(area):
-	if area.is_in_group("item"):
+	if area.is_in_group("item") or area.is_in_group("puzzle_item"):
 		item = null
-		Events.emit_signal("ui_show_interaction_hint", false)
+		$Events/HideInteractionHint.play()

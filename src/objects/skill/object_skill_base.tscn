@@ -2,5 +2,5 @@
 
 [ext_resource path="res://src/objects/skill/object_skill_base_script.gd" type="Script" id=1]
 
-[node name="SkillBasee" type="Area2D"]
+[node name="SkillBase" type="Area2D"]
 script = ExtResource( 1 )

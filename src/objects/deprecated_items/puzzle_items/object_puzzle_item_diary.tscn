@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/objects/deprecated_items/puzzle_items/object_puzzle_item_diary_script.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 37.9256
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -26.9028, -28.9308, -26.9028, 23.3951, 26.8373, 25.5164, 30.3729, -31.7592 )
+
+[node name="Diary" type="Area2D"]
+collision_layer = 5
+collision_mask = 2147485700
+script = ExtResource( 1 )
+item_name = "diary"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+occluder = SubResource( 2 )
+[connection signal="area_entered" from="." to="." method="_on_Diary_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Diary_area_exited"]

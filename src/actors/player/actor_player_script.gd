@@ -5,12 +5,19 @@ enum MovementState {IDLE, WALKING}
 
 
 export (float) var speed = 400.0
+export (PackedScene) var set_skill
+export (NodePath) var flash_hud
+export (String) var skill_name
 
 var movement_state = MovementState.IDLE
 
 
 func _ready():
+	if PlayerSkills.get_child_count() == 0 and set_skill:
+		PlayerSkills.add_child(set_skill.instance())
+		$InputSkill.set_skill(skill_name)
 	add_to_group("player")
+	$EnemyCollisionArea.add_to_group("player_raycast_detectable")
 
 
 func _physics_process(delta):

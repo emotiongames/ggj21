@@ -1,18 +1,16 @@
 extends "../object_item_base_script.gd"
 
 
-var is_player_close = false
-
-
 func _ready():
 	type = "camera"
 
 
 func do_action(player):
+	get_tree().paused = true
 	var skill = scene_to_unlock.instance()
-	player.get_node("Skills").add_child(skill)
-	player.get_node("InputSkill").set_skill(skill.SkillState.WEAK)
-	#Events.emit_signal("spawn_interactive_item", "stair")
+	PlayerSkills.add_child(skill)
+	player.get_node("InputSkill").set_skill("CameraFlash")
+	$Events/ShowSkillHint.play()
 	queue_free()
 
 

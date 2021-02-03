@@ -1,12 +1,44 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/ui_flash_hud/energy_bar_bg.png" type="Texture" id=2]
 [ext_resource path="res://src/assets/ui_flash_hud/energy_bar_fill.png" type="Texture" id=3]
 [ext_resource path="res://src/ui/flash_hud/ui_flash_hud_script.gd" type="Script" id=4]
 
+[sub_resource type="Animation" id=1]
+resource_name = "hide_flash_hud"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "show_flash_hud"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="FlashHUD" type="CenterContainer"]
+visible = false
 anchor_right = 0.077
 anchor_bottom = 0.14
 margin_right = -107.456
@@ -60,4 +92,8 @@ texture_progress = ExtResource( 3 )
 
 [node name="GaugeRecoveryTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="VisibilityPlayer" type="AnimationPlayer" parent="."]
+anims/hide_flash_hud = SubResource( 1 )
+anims/show_flash_hud = SubResource( 2 )
 [connection signal="timeout" from="GaugeRecoveryTimer" to="." method="_on_GaugeRecoveryTimer_timeout"]

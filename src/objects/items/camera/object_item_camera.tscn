@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/objects/items/camera/object_item_camera_script.gd" type="Script" id=1]
 [ext_resource path="res://src/objects/skill/object_skill_camera_flash.tscn" type="PackedScene" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://src/objects/event/object_animation_event.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
 
 [node name="CameraItem" type="Area2D"]
+pause_mode = 2
 collision_layer = 2
 collision_mask = 2048
 script = ExtResource( 1 )
@@ -18,5 +20,10 @@ texture = ExtResource( 3 )
 
 [node name="InteractionArea" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Events" type="Node2D" parent="."]
+
+[node name="ShowSkillHint" parent="Events" instance=ExtResource( 4 )]
+animation_to_play = "show_weak_skill"
 [connection signal="body_entered" from="." to="." method="_on_CameraItem_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_CameraItem_body_exited"]

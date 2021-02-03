@@ -4,9 +4,9 @@ extends Node2D
 export (NodePath) var spawn_points
 export (PackedScene) var recharge
 export (bool) var test_mode = false
+export (bool) var is_spawning = false
 export (int) var total_recharges_on_screen = 3
 
-var is_spawning = false
 var instaced_spawn_points
 var total_spawn_points = 0
 var last_spawn_point

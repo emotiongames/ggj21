@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/actors/player_deprecated/actor_player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/objects/deprecated_items/puzzle_items/object_puzzle_item_blackboard_eraser.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/ui/hud/ui_hud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/deprecated_items/puzzle_items/object_puzzle_item_diary.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+
+
+
+
+
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 688, 338 )
+scale = Vector2( 22.5, 15.1875 )
+texture = ExtResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 774, 336 )
+set_skill_state = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InGameScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
+show_flash_hud = true
+
+[node name="Pencil" parent="." instance=ExtResource( 4 )]
+position = Vector2( 856, 98 )
+is_item_to_unlock = true
+
+[node name="BlackboardEraser" parent="." instance=ExtResource( 2 )]
+position = Vector2( 484, 352 )
+unlock_item = NodePath("../Pencil")
+require_flash_light = true

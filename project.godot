@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://src/objects/autoload/autoload_events.gd"
+PlayerSkills="*res://src/actors/player/actor_player_skills.tscn"
 
 [display]
 
@@ -93,8 +94,10 @@ player_interaction={
 2d_physics/layer_4="player_enemy_interaction_area"
 2d_physics/layer_5="player_walk_area"
 2d_physics/layer_7="enemy"
+2d_physics/layer_8="enemy_damage_area"
 2d_physics/layer_12="item"
 2d_physics/layer_13="obstacle"
+2d_physics/layer_14="puzzle_item"
 2d_physics/layer_16="invisible_wall"
 
 [rendering]

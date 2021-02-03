@@ -1,7 +1,43 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/objects/recharge_spawn_system/object_recharge_spawn_system_script.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "start_spawn"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:is_spawning")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "stop_spawn"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:is_spawning")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [node name="RechargeSpawnSystem" type="Node2D"]
 script = ExtResource( 1 )
 total_recharges_on_screen = 2
+
+[node name="RechargeSpawnSystemController" type="AnimationPlayer" parent="."]
+anims/start_spawn = SubResource( 1 )
+anims/stop_spawn = SubResource( 2 )
