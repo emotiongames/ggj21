@@ -16,8 +16,9 @@ func _ready():
 
 func _process(delta):
 	PlayerSkills.global_position = get_parent().global_position
-	if selected_skill != "" and PlayerSkills.get_node(selected_skill):
-		use_skill(delta)
+	if PlayerSkills.get_child_count() > 0:
+		if selected_skill != "" and PlayerSkills.get_node(selected_skill):
+			use_skill(delta)
 
 func use_skill(delta):
 	var skill = PlayerSkills.get_node(selected_skill)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/objects/items/exit_stair/object_item_exit_stair_script.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://src/assets/exit_stair/stair.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.6927

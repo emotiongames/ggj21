@@ -6,11 +6,11 @@ func _ready():
 
 
 func do_action(player):
-	get_tree().paused = true
 	var skill = scene_to_unlock.instance()
 	PlayerSkills.add_child(skill)
 	player.get_node("InputSkill").set_skill("CameraFlash")
 	$Events/ShowSkillHint.play()
+	get_tree().paused = true
 	queue_free()
 
 

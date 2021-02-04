@@ -11,24 +11,22 @@ export (Array, NodePath) var events
 
 var instanced_events = []
 var pressed_time = 0
-var instanced_event_trigger
 
 
 func _ready():
-	instanced_event_trigger = get_node(event_trigger)
 	if events:
 		for event in events:
 			instanced_events.append(get_node(event))
 
 
 func _process(delta):
-	if len(instanced_events) > 0 and not any_events_playing(): 
+	if len(instanced_events) > 0 and not any_events_playing():
 		if depends_input:
-			if depends_event and not instanced_event_trigger:
+			if depends_event and not has_node(event_trigger):
 				do_input_action(delta)
 			elif not depends_event:
 				do_input_action(delta)
-		elif not depends_input and depends_event and not instanced_event_trigger:
+		elif not depends_input and depends_event and not has_node(event_trigger):
 			execute()
 
 

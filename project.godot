@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GGJ21"
+config/name="Why Am I Here?"
 run/main_scene="res://src/ui/screens/menus/main/ui_screens_menu_main.tscn"
 config/icon="res://icon.png"
 

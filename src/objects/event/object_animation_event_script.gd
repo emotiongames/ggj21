@@ -5,7 +5,6 @@ export (String) var animation_to_play = ""
 
 
 func _ready():
-	print(animation_to_play)
 	var node_animation_finished_signal = node.connect("animation_finished", self, "on_Animation_finished")
 
 
