@@ -13,14 +13,8 @@ var instanced_events = []
 var pressed_time = 0
 
 
-func _ready():
-	if events:
-		for event in events:
-			instanced_events.append(get_node(event))
-
-
 func _process(delta):
-	if len(instanced_events) > 0 and not any_events_playing():
+	if get_child_count() > 0 and not any_events_playing():
 		if depends_input:
 			if depends_event and not has_node(event_trigger):
 				do_input_action(delta)
@@ -41,7 +35,7 @@ func do_input_action(delta):
 		pressed_time = 0
 
 func any_events_playing():
-	for event in instanced_events:
+	for event in get_children():
 		if not event.is_playing():
 			return false
 	return true
@@ -49,8 +43,8 @@ func any_events_playing():
 func execute():
 	if get_tree().paused:
 		get_tree().paused = false
-	if len(instanced_events) > 0:
-		for event in instanced_events:
+	if get_child_count() > 0:
+		for event in get_children():
 			if not event.is_playing():
 				event.play()
 		queue_free()

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/chair_adjust.wav-16b1c776a9653bb9d98bd8cfbe6054b7.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/office/chair_adjust.wav"
+dest_files=[ "res://.import/chair_adjust.wav-16b1c776a9653bb9d98bd8cfbe6054b7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/trash.wav-463d49e789f74019e110fd4bf96404ac.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/office/trash.wav"
+dest_files=[ "res://.import/trash.wav-463d49e789f74019e110fd4bf96404ac.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

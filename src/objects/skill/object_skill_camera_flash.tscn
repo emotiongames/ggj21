@@ -32,6 +32,8 @@ script = ExtResource( 2 )
 visible = false
 position = Vector2( 152, 0 )
 texture = ExtResource( 1 )
+shadow_enabled = true
+shadow_gradient_length = 0.7
 
 [node name="FlashCollisionArea" type="CollisionShape2D" parent="."]
 position = Vector2( 136, 0 )

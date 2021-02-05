@@ -98,6 +98,7 @@ player_interaction={
 2d_physics/layer_12="item"
 2d_physics/layer_13="obstacle"
 2d_physics/layer_14="puzzle_item"
+2d_physics/layer_15="static_item"
 2d_physics/layer_16="invisible_wall"
 
 [rendering]

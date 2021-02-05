@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/assets/level_1/planta.png" type="Texture" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 39.6411
+height = 217.49
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -38.447, 139.939, -43.7864, 70.5275, -32.4402, 55.8443, -35.1099, 44.4981, -45.7886, 42.4959, -43.119, 15.7991, -37.7796, 8.45746, -22.429, 1.78326, -37.1122, -10.2303, -35.7773, -28.9181, -22.429, -36.2597, -39.7819, -46.9384, -37.1122, -66.961, -27.7683, -79.642, -35.1099, -89.6533, -33.7751, -123.692, -18.4244, -124.359, -18.4244, -154.393, 34.3017, -152.391, 37.6389, -133.036, 42.3108, -82.9791, 44.9805, -60.2868, 34.9691, -50.2755, 45.6479, -42.9339, 42.9782, -12.9, 36.304, -11.5651, 38.9737, 27.1452, 45.6479, 31.1497, 44.9805, 47.8352, 36.9714, 52.5072, 41.6434, 62.5185, 43.6456, 141.274, 23.623, 145.279, 22.9556, 153.955, -29.1031, 154.622 )
+
+[node name="Planta" type="StaticBody2D"]
+collision_layer = 65
+collision_mask = 16384
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+occluder = SubResource( 2 )
