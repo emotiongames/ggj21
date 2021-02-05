@@ -6,7 +6,6 @@ export (bool) var depends_input = false
 export (bool) var depends_event = false
 export (bool) var needs_input_pressed = false
 export (NodePath) var event_trigger
-export (Array, NodePath) var events
 
 
 var instanced_events = []
