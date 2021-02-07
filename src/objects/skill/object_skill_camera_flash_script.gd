@@ -9,6 +9,9 @@ func _ready():
 	.set_weak_damage(25)
 	.set_strong_damage(100)
 
+func _physics_process(delta):
+	$CanvasLayer/Cross.position = $CrossPosition.get_global_transform_with_canvas().origin
+
 func update_facing_direction(facing_position):
 	if not $AnimationPlayer.is_playing():
 		self.look_at(facing_position)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/lights/effects_item_camera/luz.png" type="Texture" id=1]
 [ext_resource path="res://src/objects/skill/object_skill_camera_flash_script.gd" type="Script" id=2]
@@ -22,9 +22,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ false, true, false, true, false, true, false ]
 }
-
-[sub_resource type="CanvasItemMaterial" id=3]
-render_priority = -1
 
 [node name="CameraFlash" type="Area2D"]
 pause_mode = 2
@@ -51,9 +48,15 @@ anims/Flashing = SubResource( 2 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
-[node name="Cross" type="Sprite" parent="."]
+[node name="CrossPosition" type="Position2D" parent="."]
+position = Vector2( 312, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Cross" type="Sprite" parent="CanvasLayer"]
 light_mask = -2147483647
-material = SubResource( 3 )
-position = Vector2( 296, 0 )
+position = Vector2( 312, 0 )
+scale = Vector2( 0.5, 0.51 )
+z_as_relative = false
 texture = ExtResource( 3 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
