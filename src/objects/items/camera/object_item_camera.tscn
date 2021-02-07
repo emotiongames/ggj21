@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/objects/items/camera/object_item_camera_script.gd" type="Script" id=1]
 [ext_resource path="res://src/objects/skill/object_skill_camera_flash.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/assets/camera/camera.png" type="Texture" id=3]
 [ext_resource path="res://src/objects/event/object_animation_event.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/lights/effects_item_camera/light_shadow_light.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
@@ -27,5 +28,9 @@ shape = SubResource( 1 )
 
 [node name="ShowSkillHint" parent="Events" instance=ExtResource( 4 )]
 animation_to_play = "show_weak_skill"
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 5 )
+texture_scale = 0.3
 [connection signal="body_entered" from="." to="." method="_on_CameraItem_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_CameraItem_body_exited"]
