@@ -10,7 +10,6 @@ height = 47.1258
 polygon = PoolVector2Array( -45.572, -47.9944, -28.6014, -67.0863, 25.1387, -68.5005, 44.9377, -51.53, 47.059, 42.5152, 24.4315, 67.9711, -26.4801, 70.7995, -46.2791, 45.3437 )
 
 [node name="LixeiraComLixo" type="StaticBody2D"]
-collision_layer = 65
 collision_mask = 16384
 
 [node name="Sprite" type="Sprite" parent="."]

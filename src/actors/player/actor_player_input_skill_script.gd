@@ -14,7 +14,7 @@ func _ready():
 	view_movements = player.get_node("ViewMovements")
 	flash_hud = player.get_node(player.flash_hud)
 
-func _process(delta):
+func _physics_process(delta):
 	PlayerSkills.global_position = get_parent().global_position
 	if PlayerSkills.get_child_count() > 0:
 		if selected_skill != "" and PlayerSkills.get_node(selected_skill):

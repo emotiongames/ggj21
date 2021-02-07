@@ -9,7 +9,6 @@ extents = Vector2( 93.1182, 21.6472 )
 polygon = PoolVector2Array( -94.3329, -21.086, -92.6493, 21.5676, 94.8019, 22.1288, 94.2407, -23.3309 )
 
 [node name="Teclado" type="StaticBody2D"]
-collision_layer = 65
 collision_mask = 16384
 
 [node name="Sprite" type="Sprite" parent="."]

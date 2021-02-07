@@ -45,7 +45,7 @@ tracks/1/keys = {
 "update": 1,
 "values": [ "You got a powerfull camera flash!
 
-Hold and release mouse LB to use it." ]
+Hold and release mouse LB to use it. Use it to kill the enemies." ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -74,7 +74,7 @@ tracks/1/keys = {
 "update": 1,
 "values": [ "You got a camera!
 
-Press mouse LB to take a pic." ]
+Press mouse LB to take a pic. Use it to paralyse the enemies." ]
 }
 
 [node name="SkillHint" type="CenterContainer"]
@@ -88,12 +88,15 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_right = 189.0
+margin_right = 237.0
 margin_bottom = 48.0
-text = "You got a camera!
+text = "You got a powerfull camera flash!
 
-Press mouse LB to take a pic."
+Hold and release mouse LB to use it."
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VisibilityPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2

@@ -9,7 +9,6 @@ radius = 46.3519
 polygon = PoolVector2Array( -42.0365, 21.302, -29.3086, 21.302, -30.0157, -37.3878, -8.09534, -55.7726, 29.3813, -57.1868, 47.059, -39.5092, 46.3519, 34.7371, 30.0884, 51.0005, -42.7436, 55.2432 )
 
 [node name="LixeiraQuebrada" type="StaticBody2D"]
-collision_layer = 65
 collision_mask = 16384
 
 [node name="Sprite" type="Sprite" parent="."]

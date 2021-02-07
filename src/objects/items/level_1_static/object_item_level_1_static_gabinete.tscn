@@ -9,7 +9,6 @@ extents = Vector2( 37.5564, 100.22 )
 polygon = PoolVector2Array( -38.2099, -103.026, -38.7711, 103.507, 38.1176, 102.385, 38.1176, -95.7297, 33.0665, -95.1685, 30.8216, -104.148 )
 
 [node name="Gabinete" type="StaticBody2D"]
-collision_layer = 65
 collision_mask = 16384
 
 [node name="Sprite" type="Sprite" parent="."]
