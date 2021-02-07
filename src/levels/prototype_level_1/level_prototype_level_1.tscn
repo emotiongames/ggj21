@@ -418,9 +418,20 @@ animation_to_play = "turn_on"
 [node name="GetCamera" parent="UseCameraEventManager" instance=ExtResource( 29 )]
 affected_node = NodePath("../../Audios/GetCamera")
 
-[node name="AnimationEvent" parent="UseCameraEventManager" instance=ExtResource( 12 )]
+[node name="ShowAmbulanceLights" parent="UseCameraEventManager" instance=ExtResource( 12 )]
 affected_node = NodePath("../../StaticItems/AmbulanceLights/BehaviorMovement")
 animation_to_play = "rotating"
+
+[node name="ShowMaca" parent="UseCameraEventManager" instance=ExtResource( 12 )]
+affected_node = NodePath("../../StaticItems/Maca/VisibilityBehavior")
+animation_to_play = "show"
+
+[node name="ShowSoro" parent="UseCameraEventManager" instance=ExtResource( 12 )]
+affected_node = NodePath("../../StaticItems/Soro/VisibilityBehavior")
+animation_to_play = "show"
+
+[node name="AudioEvent" parent="UseCameraEventManager" instance=ExtResource( 29 )]
+affected_node = NodePath("../../Audios/Ambulance")
 
 [node name="InvisibleWall" type="StaticBody2D" parent="."]
 collision_mask = 32768
@@ -1076,7 +1087,6 @@ max_distance = 10000.0
 position = Vector2( 6485.18, 272.962 )
 stream = ExtResource( 39 )
 volume_db = 7.0
-autoplay = true
 max_distance = 800.0
 
 [node name="Trash" type="AudioStreamPlayer2D" parent="Audios"]
@@ -1130,6 +1140,10 @@ max_distance = 700.0
 [editable path="CameraItem"]
 
 [editable path="ExitStair"]
+
+[editable path="StaticItems/Maca"]
+
+[editable path="StaticItems/Soro"]
 
 [editable path="StaticItems/AmbulanceLights"]
 
