@@ -149,8 +149,7 @@ func set_navigation_points(points):
 
 
 func _on_Game_over():
-	pass
-	#queue_free()
+	queue_free()
 
 
 func _on_DamageArea_area_entered(area):

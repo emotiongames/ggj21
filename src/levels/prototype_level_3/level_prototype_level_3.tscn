@@ -28,6 +28,7 @@ tile_data = PoolIntArray( -3080227, 536870915, 0, -3080226, 536870915, 0, -30802
 [node name="Player" parent="." instance=ExtResource( 1 )]
 set_skill = ExtResource( 14 )
 flash_hud = NodePath("../InGameScreen/InGameScreen/FlashHUD")
+is_with_camera = true
 skill_name = "CameraFlash"
 
 [node name="ShowInteractionHint" parent="Player/InputInteraction/Events" index="0"]
@@ -193,7 +194,6 @@ depends_input = true
 depends_event = true
 needs_input_pressed = true
 event_trigger = NodePath("../PowerfulFlash/Events/ShowSkillHint")
-events = [ NodePath("HideSkillHint"), NodePath("StartSpawnEnemies"), NodePath("StartSpawnRecharges") ]
 
 [node name="HideSkillHint" parent="EventManager" instance=ExtResource( 13 )]
 affected_node = NodePath("../../InGameScreen/InGameScreen/SkillHint/VisibilityPlayer")

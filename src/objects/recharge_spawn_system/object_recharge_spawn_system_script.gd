@@ -9,12 +9,13 @@ export (int) var total_recharges_on_screen = 3
 
 var instaced_spawn_points
 var total_spawn_points = 0
-var last_spawn_point
 
 
 func _ready():
 	instaced_spawn_points = get_node(spawn_points)
 	total_spawn_points = instaced_spawn_points.get_child_count()
+	for spawn_point in instaced_spawn_points.get_children():
+		spawn_point.hide()
 	if test_mode:
 		is_spawning = true
 
@@ -27,11 +28,12 @@ func _physics_process(_delta):
 
 func do_spawn():
 	var spawn_point = get_random_spawn_point()
-	if last_spawn_point != spawn_point:
+	if not spawn_point.is_visible():
 		var instaced_recharge = recharge.instance()
+		spawn_point.show()
 		instaced_recharge.global_position = spawn_point.global_position
+		instaced_recharge.set_spawn_point(spawn_point)
 		add_child(instaced_recharge)
-		last_spawn_point = spawn_point
 
 
 func get_random_spawn_point():

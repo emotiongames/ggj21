@@ -8,9 +8,9 @@ func _ready():
 func do_action(player):
 	get_tree().paused = true
 	var skill = PlayerSkills.get_node("CameraFlash")
-	print(skill.get_available_states())
+	#print(skill.get_available_states())
 	skill.unlock_state(skill.SkillState.STRONG)
-	print(skill.get_available_states())
+	#print(skill.get_available_states())
 	#player.get_node("InputSkill").set_skill(skill.SkillState.WEAK)
 	$Events/ShowSkillHint.play()
 	queue_free()

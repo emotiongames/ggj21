@@ -74,6 +74,7 @@ scene_to_unlock = ExtResource( 12 )
 position = Vector2( 6537.31, 3133.21 )
 set_skill = ExtResource( 4 )
 flash_hud = NodePath("../InGameScreen/InGameScreen/FlashHUD")
+is_with_camera = true
 skill_name = "CameraFlash"
 
 [node name="ShowInteractionHint" parent="Player/InputInteraction/Events" index="0"]

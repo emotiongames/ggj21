@@ -20,13 +20,15 @@ var total_spawned_enemies = 0
 var instaced_spawn_points
 var instanced_navigation_area
 var total_spawn_points = 0
-var last_spawn_point
 
 
 func _ready():
+	var _game_over_signal = Events.connect("game_over", self, "_on_Game_over")
 	instaced_spawn_points = get_node(spawn_points)
 	total_spawn_points = instaced_spawn_points.get_child_count()
 	instanced_navigation_area = get_node(navigation_area)
+	for spawn_point in instaced_spawn_points.get_children():
+		spawn_point.hide()
 	if test_mode:
 		is_spawning = true
 
@@ -46,16 +48,17 @@ func _physics_process(_delta):
 
 
 func do_spawn(spawn_point):
-	if last_spawn_point != spawn_point:
+	if not spawn_point.is_visible():
+		spawn_point.show()
 		var instaced_enemy = enemy.instance()
 		instaced_enemy.set_navigation_area(instanced_navigation_area)
 		if is_spawn_points_nav_points:
 			instaced_enemy.set_navigation_points(instaced_spawn_points)
+		instaced_enemy.set_spawn_point(spawn_point)
 		instaced_enemy.follow_player(get_node(player))
 		instaced_enemy.global_position = spawn_point.global_position
 		add_child(instaced_enemy)
 		total_spawned_enemies += 1
-		last_spawn_point = spawn_point
 
 
 func get_random_spawn_point():
@@ -69,3 +72,6 @@ func _on_SpawnSystemController_animation_finished(anim_name):
 		if force_spawn_on_specific_point:
 			var instanced_point = get_node(specific_spawn_point)
 			do_spawn(instanced_point)
+
+func _on_Game_over():
+	queue_free()

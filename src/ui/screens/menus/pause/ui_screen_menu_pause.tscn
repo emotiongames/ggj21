@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/ui/screens/menus/pause/elements/ui_screen_menu_pause_buttons.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/ui/screens/menus/pause/ui_screen_menu_pause_script.gd" type="Script" id=2]
 
 [node name="PauseMenu" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -23,3 +26,11 @@ margin_left = -123.0
 margin_top = -212.0
 margin_right = 123.0
 margin_bottom = 212.0
+
+[node name="VBoxContainer" parent="PauseMenuButtons" index="0"]
+margin_bottom = 424.0
+[connection signal="button_up" from="PauseMenuButtons/VBoxContainer/Resume/Button" to="." method="_on_Button_button_up"]
+
+[editable path="PauseMenuButtons"]
+
+[editable path="PauseMenuButtons/VBoxContainer/Resume"]

@@ -17,12 +17,11 @@ var enemy_state = EnemyState.SEEKING
 var path : = PoolVector2Array()
 var is_player_on_field_view = false
 var damage_area
+var instanced_spawn_point
 var is_on_damage_area = false
 
 func _ready():
-	#var  _player_position_updated_signal = Events.connect("player_position_updated", self, "_on_Player_position_updated")
-	#var _do_paralyze_enemy_signal = Events.connect("do_paralyze_enemy", self, "_on_Do_paralyze_enemy")
-	#var _do_damage_on_enemy_signal = Events.connect("do_damage_on_enemy", self, "_on_Do_damage_on_enemy")
+	var _game_over_signal = Events.connect("game_over", self, "_on_Game_over")
 	$RayCast2D.set_cast_to(raycast_direction)
 	if instanced_navigation_area == null:
 		instanced_navigation_area = get_node(navigation_area)
@@ -92,13 +91,6 @@ func move(delta):
 		distance_to_walk -= distance_to_next_point
 
 
-#func _on_Do_paralyze_enemy(enemy):
-#	if self == enemy:
-#		if enemy_state != EnemyState.PARALYZED:
-#			enemy_state = EnemyState.PARALYZED
-#			$StandstillTimer.start()
-
-
 func _on_StandstillTimer_timeout():
 	enemy_state = EnemyState.SEEKING
 
@@ -107,8 +99,13 @@ func set_navigation_area(node):
 	instanced_navigation_area = node
 
 
+
+func set_spawn_point(spawn_point):
+	instanced_spawn_point = spawn_point
+
 func _on_EnemySpawnCollisionArea_area_entered(area):
 	if area.is_in_group("spawn_collision"):
+		instanced_spawn_point.hide()
 		area.queue_free()
 
 
@@ -123,3 +120,7 @@ func _on_DamageArea_area_exited(area):
 	if area.is_in_group("skill"):
 		is_on_damage_area = false
 		damage_area = null
+
+
+func _on_Game_over():
+	queue_free()

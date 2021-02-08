@@ -850,7 +850,7 @@ navigation_area = NodePath("../Navigation2D")
 player = NodePath("../Player")
 
 [node name="AnimatedSprite" parent="EnemyLevel1" index="1"]
-frame = 2
+frame = 1
 
 [node name="EnemyLevel2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 6034.23, -1268.62 )
@@ -859,7 +859,7 @@ navigation_area = NodePath("../Navigation2D")
 player = NodePath("../Player")
 
 [node name="AnimatedSprite" parent="EnemyLevel2" index="1"]
-frame = 2
+frame = 1
 
 [node name="SpawnBehavior" parent="EnemyLevel2" index="8"]
 anims/not_spawned = SubResource( 2 )
@@ -871,9 +871,6 @@ nav_points = NodePath("../EnemyNavPoints")
 navigation_area = NodePath("../Navigation2D")
 player = NodePath("../Player")
 
-[node name="AnimatedSprite" parent="EnemyLevel3" index="1"]
-frame = 1
-
 [node name="SpawnBehavior" parent="EnemyLevel3" index="8"]
 anims/not_spawned = SubResource( 4 )
 anims/spawned = SubResource( 5 )
@@ -883,9 +880,6 @@ position = Vector2( 6470.47, 1094 )
 nav_points = NodePath("../EnemyNavPoints")
 navigation_area = NodePath("../Navigation2D")
 player = NodePath("../Player")
-
-[node name="AnimatedSprite" parent="EnemyLevel4" index="1"]
-frame = 1
 
 [node name="SpawnBehavior" parent="EnemyLevel4" index="8"]
 anims/not_spawned = SubResource( 6 )

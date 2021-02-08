@@ -17,7 +17,6 @@ __meta__ = {
 }
 
 [node name="InteractionHint" parent="." instance=ExtResource( 5 )]
-visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,7 +25,6 @@ margin_right = 0.0
 margin_bottom = 0.0
 
 [node name="SkillHint" parent="." instance=ExtResource( 2 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -37,14 +35,12 @@ margin_right = 89.5
 margin_bottom = 24.0
 
 [node name="FlashHUD" parent="." instance=ExtResource( 3 )]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 0.0
 margin_right = 0.0
 margin_bottom = 84.0
 
 [node name="SkillUseHint" parent="." instance=ExtResource( 4 )]
-visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

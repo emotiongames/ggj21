@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://src/objects/items/flash_recharge/object_item_flash_recharge_script.gd" type="Script" id=2]
+[ext_resource path="res://src/lights/effects_item_camera/light_shadow_light.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 31.8076
@@ -21,9 +22,16 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="SpawnCollisionArea" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnCollisionArea"]
 shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.3
+energy = 0.7
 [connection signal="body_entered" from="." to="." method="_on_FlashRecharge_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_FlashRecharge_body_exited"]
 [connection signal="area_entered" from="SpawnCollisionArea" to="." method="_on_SpawnCollisionArea_area_entered"]

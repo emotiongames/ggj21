@@ -33,7 +33,7 @@ func use_skill(delta):
 		if flash_hud.can_reduce_gauge(skill.damage_value(SkillState.STRONG)):
 			skill.play_effect(SkillState.STRONG)
 			pressed_time = 0
-	elif Input.is_action_just_released("player_skill_use"):
+	elif not Input.is_action_pressed("player_skill_use") and pressed_time > 0:
 		pressed_time = 0
 
 
