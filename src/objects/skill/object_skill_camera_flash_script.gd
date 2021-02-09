@@ -4,6 +4,7 @@ extends "object_skill_base_script.gd"
 const FLASH_ENERGY_DEFAULT = 1.0
 
 func _ready():
+	var _game_over_signal = Events.connect("game_over", self, "_on_Game_over")
 	skill_name = "CameraFlash"
 	.unlock_state(SkillState.WEAK)
 	.set_weak_damage(25)
@@ -38,3 +39,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		active = false
 		active_skill = ""
 		get_tree().paused = false
+
+func _on_Game_over():
+	queue_free()

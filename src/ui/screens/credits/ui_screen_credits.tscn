@@ -56,7 +56,7 @@ margin_right = 1398.0
 margin_bottom = 371.0
 set_name_value = "Denildo Junior"
 set_status_value = "Doing Art"
-set_attribution_value = "Character Desiger / Asset Designer"
+set_attribution_value = "Character Designer / Asset Designer"
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 375.0
